@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7EAE63551DD854300011EF8B /* start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EAE63531DD854300011EF8B /* start.cpp */; };
+		7E33B1D41DD8CE7F00927736 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E33B1D21DD8CE7F00927736 /* SDL2_image.framework */; };
+		7E33B1D51DD8CE7F00927736 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E33B1D31DD8CE7F00927736 /* SDL2.framework */; };
+		7E33B1DD1DD8E66700927736 /* func.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E33B1DB1DD8D50900927736 /* func.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,9 +25,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7E33B1D01DD8CE6100927736 /* dot.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = dot.bmp; sourceTree = "<group>"; };
+		7E33B1D21DD8CE7F00927736 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		7E33B1D31DD8CE7F00927736 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		7E33B1D61DD8CEDE00927736 /* class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = class.h; path = "/Users/Waleed/Desktop/code_bin/c++/revenge/class.h"; sourceTree = "<absolute>"; };
+		7E33B1DB1DD8D50900927736 /* func.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = func.cpp; sourceTree = SOURCE_ROOT; };
 		7E7C0B001DD35E9A00B92685 /* revenge */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = revenge; sourceTree = BUILT_PRODUCTS_DIR; };
-		7EAE63531DD854300011EF8B /* start.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = start.cpp; path = ../../labs/start.cpp; sourceTree = "<group>"; };
-		7EAE63541DD854300011EF8B /* start.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = start.hpp; path = ../../labs/start.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +38,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E33B1D41DD8CE7F00927736 /* SDL2_image.framework in Frameworks */,
+				7E33B1D51DD8CE7F00927736 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E33B1D11DD8CE7F00927736 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E33B1D21DD8CE7F00927736 /* SDL2_image.framework */,
+				7E33B1D31DD8CE7F00927736 /* SDL2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7E7C0AF71DD35E9A00B92685 = {
 			isa = PBXGroup;
 			children = (
 				7E7C0B021DD35E9A00B92685 /* revenge */,
 				7E7C0B011DD35E9A00B92685 /* Products */,
+				7E33B1D01DD8CE6100927736 /* dot.bmp */,
+				7E33B1D11DD8CE7F00927736 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +76,8 @@
 		7E7C0B021DD35E9A00B92685 /* revenge */ = {
 			isa = PBXGroup;
 			children = (
-				7EAE63531DD854300011EF8B /* start.cpp */,
-				7EAE63541DD854300011EF8B /* start.hpp */,
+				7E33B1DB1DD8D50900927736 /* func.cpp */,
+				7E33B1D61DD8CEDE00927736 /* class.h */,
 			);
 			path = revenge;
 			sourceTree = "<group>";
@@ -122,7 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EAE63551DD854300011EF8B /* start.cpp in Sources */,
+				7E33B1DD1DD8E66700927736 /* func.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +237,14 @@
 		7E7C0B081DD35E9A00B92685 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEVELOPMENT_TEAM = 3248XETZ95;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = " /Library/Frameworks";
+				GCC_NO_COMMON_BLOCKS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -227,7 +252,14 @@
 		7E7C0B091DD35E9A00B92685 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEVELOPMENT_TEAM = 3248XETZ95;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = " /Library/Frameworks";
+				GCC_NO_COMMON_BLOCKS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
