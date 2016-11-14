@@ -11,6 +11,7 @@
 		7E33B1D51DD8CE7F00927736 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E33B1D31DD8CE7F00927736 /* SDL2.framework */; };
 		7E33B1DD1DD8E66700927736 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E33B1DB1DD8D50900927736 /* main.cpp */; };
 		7E4D96D71DD9A29400523CAD /* Yar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4D96D51DD9A29400523CAD /* Yar.cpp */; };
+		7E4D96DB1DD9C20500523CAD /* Egg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4D96D81DD9A2B800523CAD /* Egg.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,7 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7E33B1D01DD8CE6100927736 /* dot.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = dot.bmp; sourceTree = "<group>"; };
+		7E33B1D01DD8CE6100927736 /* Yar.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Yar.bmp; sourceTree = "<group>"; };
 		7E33B1D21DD8CE7F00927736 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		7E33B1D31DD8CE7F00927736 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		7E33B1D61DD8CEDE00927736 /* setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setup.h; sourceTree = SOURCE_ROOT; };
@@ -35,6 +36,7 @@
 		7E4D96D61DD9A29400523CAD /* Yar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Yar.hpp; sourceTree = SOURCE_ROOT; };
 		7E4D96D81DD9A2B800523CAD /* Egg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Egg.cpp; sourceTree = SOURCE_ROOT; };
 		7E4D96D91DD9A2B800523CAD /* Egg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Egg.hpp; sourceTree = SOURCE_ROOT; };
+		7E4D96DC1DD9C2E400523CAD /* Egg.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Egg.bmp; sourceTree = "<group>"; };
 		7E7C0B001DD35E9A00B92685 /* revenge */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = revenge; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -65,7 +67,8 @@
 			children = (
 				7E7C0B021DD35E9A00B92685 /* revenge */,
 				7E7C0B011DD35E9A00B92685 /* Products */,
-				7E33B1D01DD8CE6100927736 /* dot.bmp */,
+				7E33B1D01DD8CE6100927736 /* Yar.bmp */,
+				7E4D96DC1DD9C2E400523CAD /* Egg.bmp */,
 				7E33B1D11DD8CE7F00927736 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E4D96DB1DD9C20500523CAD /* Egg.cpp in Sources */,
 				7E4D96D71DD9A29400523CAD /* Yar.cpp in Sources */,
 				7E33B1DD1DD8E66700927736 /* main.cpp in Sources */,
 			);

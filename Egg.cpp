@@ -8,11 +8,14 @@
 
 #include "Egg.hpp"
 
-Egg::Egg(int xPos , int yPos )
+LTexture gEggTexture;
+
+
+Egg::Egg(int PosX , int PosY)
 {
     //Initialize the offsets
-    mPosX = xPos;
-    mPosY = yPos;
+    mPosX = PosX;
+    mPosY = PosY;
     
     //Set collision box dimension
     mCollider.w = Egg_WIDTH;
@@ -21,7 +24,35 @@ Egg::Egg(int xPos , int yPos )
     //Initialize the velocity
     mVelX = 0;
     mVelY = 0;
-    
+}
+
+
+void Egg::handleEvent( SDL_Event& e )
+{
+    //If a key was pressed
+    if( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
+    {
+        //Adjust the velocity
+        switch( e.key.keysym.sym )
+        {
+            case SDLK_UP: mVelY -= Egg_VEL; break;
+            case SDLK_DOWN: mVelY += Egg_VEL; break;
+            case SDLK_LEFT: mVelX -= Egg_VEL; break;
+            case SDLK_RIGHT: mVelX += Egg_VEL; break;
+        }
+    }
+    //If a key was released
+    else if( e.type == SDL_KEYUP && e.key.repeat == 0 )
+    {
+        //Adjust the velocity
+        switch( e.key.keysym.sym )
+        {
+            case SDLK_UP: mVelY += Egg_VEL; break;
+            case SDLK_DOWN: mVelY -= Egg_VEL; break;
+            case SDLK_LEFT: mVelX += Egg_VEL; break;
+            case SDLK_RIGHT: mVelX -= Egg_VEL; break;
+        }
+    }
 }
 
 void Egg::move( SDL_Rect& wall )
@@ -58,7 +89,7 @@ void Egg::render()
 }
 
 
-bool loadMedia()
+bool Egg::loadMedia()
 {
     //Loading success flag
     bool success = true;
@@ -72,7 +103,8 @@ bool loadMedia()
     
     return success;
 }
-bool checkCollision( SDL_Rect a, SDL_Rect b )
+
+bool Egg::checkCollision( SDL_Rect a, SDL_Rect b )
 {
     //The sides of the rectangles
     int leftA, leftB;
@@ -117,4 +149,12 @@ bool checkCollision( SDL_Rect a, SDL_Rect b )
     return true;
 }
 
+///////////////////////////////////////////////////////////
 
+
+void Egg::close()
+{
+    //Free loaded images
+    gEggTexture.free();
+    
+}

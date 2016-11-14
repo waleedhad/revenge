@@ -14,7 +14,7 @@
 //Scene textures
 
 #include "Yar.hpp"
-
+#include "Egg.hpp"
 
 
 //The window we'll be rendering to
@@ -229,7 +229,6 @@ bool init()
     
     return success;
 }
-/////////////////////////////////////////////////////
 
 void close()
 {
@@ -249,6 +248,7 @@ int main( int argc, char* args[] )
 {
     
     Yar yar1;
+    Egg egg1(100,100);
     
     
     //Start up SDL and create window
@@ -264,7 +264,7 @@ int main( int argc, char* args[] )
             printf( "Failed to load media!\n" );
         }
         else
-        {
+        {   egg1.loadMedia();
             //Main loop flag
             bool quit = false;
             
@@ -306,9 +306,9 @@ int main( int argc, char* args[] )
                 SDL_RenderDrawRect( gRenderer, &wall );
                 
                 //Render dot
+                egg1.render();
                 yar1.render();
 
-                //egg1.render();
                 
                 //Update screen
                 SDL_RenderPresent( gRenderer );
@@ -317,7 +317,9 @@ int main( int argc, char* args[] )
     }
     
     //Free resources and close SDL
+    
     yar1.close();
+    egg1.close();
 
     close();
     

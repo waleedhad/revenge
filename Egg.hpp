@@ -1,21 +1,22 @@
 //
-//  Yar.hpp
+//  Egg.hpp
 //  revenge
 //
 //  Created by Waleed Al-Haddad on 14/11/16.
 //  Copyright © 2016 Waleed Al-Haddad. All rights reserved.
 //
 
-#ifndef Yar_hpp
-#define Yar_hpp
+#ifndef Egg_hpp
+#define Egg_hpp
 
 #include <stdio.h>
 #include "setup.h"
 
-LTexture gEggTexture;
+/*
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
+ */
 
-
-//The Egg that will move around on the screen
 class Egg
 {
 public:
@@ -24,10 +25,10 @@ public:
     static const int Egg_HEIGHT = 20;
     
     //Maximum axis velocity of the Egg
-    static const int Egg_VEL = 10;
+    static const int Egg_VEL = 0;
     
     //Initializes the variables
-    Egg(int xPos , int yPos );
+    Egg(int PosX , int PosY);
     
     //Takes key presses and adjusts the Egg's velocity
     void handleEvent( SDL_Event& e );
@@ -37,6 +38,10 @@ public:
     
     //Shows the Egg on the screen
     void render();
+    
+    bool loadMedia();
+    bool checkCollision( SDL_Rect a, SDL_Rect b );
+    void close();
     
 private:
     //The X and Y offsets of the Egg
@@ -49,4 +54,4 @@ private:
     SDL_Rect mCollider;
 };
 
-#endif /* Yar_hpp */
+#endif /* Egg_hpp */
