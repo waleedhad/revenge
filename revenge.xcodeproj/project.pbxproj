@@ -28,7 +28,7 @@
 		7E33B1D01DD8CE6100927736 /* dot.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = dot.bmp; sourceTree = "<group>"; };
 		7E33B1D21DD8CE7F00927736 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		7E33B1D31DD8CE7F00927736 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		7E33B1D61DD8CEDE00927736 /* class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = class.h; path = "/Users/Waleed/Desktop/code_bin/c++/revenge/class.h"; sourceTree = "<absolute>"; };
+		7E33B1D61DD8CEDE00927736 /* class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = class.h; path = /Users/Asim/Documents/revenge/class.h; sourceTree = "<absolute>"; };
 		7E33B1DB1DD8D50900927736 /* func.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = func.cpp; sourceTree = SOURCE_ROOT; };
 		7E7C0B001DD35E9A00B92685 /* revenge */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = revenge; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
