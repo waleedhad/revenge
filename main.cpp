@@ -3,7 +3,7 @@
 //
 //
 
-// first try in our github.iuhiuhuohouhpou
+// first try in our github
 
 /*This source code copyrighted by Lazy Foo' Productions (2004-2015)
  and may not be redistributed without written permission.*/
@@ -15,6 +15,12 @@
 
 #include "Yar.hpp"
 #include "Egg.hpp"
+#include "bullet.hpp"
+
+const int MAX_BULLETS = 1;
+Bullet arrayofBullets[MAX_BULLETS];
+
+
 
 
 //The window we'll be rendering to
@@ -230,6 +236,47 @@ bool init()
     return success;
 }
 
+
+
+
+bool checkCollision( std::vector<SDL_Rect>& a, std::vector<SDL_Rect>& b )
+{
+    //The sides of the rectangles
+    int leftA, leftB;
+    int rightA, rightB;
+    int topA, topB;
+    int bottomA, bottomB;
+    
+    //Go through the A boxes
+    for( int Abox = 0; Abox < a.size(); Abox++ )
+    {
+        //Calculate the sides of rect A
+        leftA = a[ Abox ].x;
+        rightA = a[ Abox ].x + a[ Abox ].w;
+        topA = a[ Abox ].y;
+        bottomA = a[ Abox ].y + a[ Abox ].h;
+        
+        //Go through the B boxes
+        for( int Bbox = 0; Bbox < b.size(); Bbox++ )
+        {
+            //Calculate the sides of rect B
+            leftB = b[ Bbox ].x;
+            rightB = b[ Bbox ].x + b[ Bbox ].w;
+            topB = b[ Bbox ].y;
+            bottomB = b[ Bbox ].y + b[ Bbox ].h;
+            
+            //If no sides from A are outside of B
+            if( ( ( bottomA >= bottomB ) || ( topA >= topB ) || ( rightA <= rightB ) || ( leftA >= leftB ) ) == false )
+            {
+                //A collision is detected
+                return true;
+            }
+        }
+    }
+    
+    //If neither set of collision boxes touched
+    return false;
+}
 void close()
 {
     //Destroy window
@@ -248,7 +295,27 @@ int main( int argc, char* args[] )
 {
     
     Yar yar1;
+   
     Egg egg1(100,100);
+    Bullet bullet1(10,100);
+    //The dot that will be moving around on the screen
+    Bullet dot( 0, 0 );
+    
+    //The dot that will be collided against
+    Bullet otherDot( SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4 );
+    
+   
+    
+
+    
+    
+    
+    //makes all bullets false
+    for (int i=0; i<MAX_BULLETS; i++)
+    {
+        arrayofBullets[i].isActive = false;
+    }
+
     
     
     //Start up SDL and create window
@@ -259,12 +326,12 @@ int main( int argc, char* args[] )
     else
     {
         //Load media
-        if( !yar1.loadMedia() )
+        if( !yar1.loadMedia() || !egg1.loadMedia() || !bullet1.loadMedia() )
         {
             printf( "Failed to load media!\n" );
         }
         else
-        {   egg1.loadMedia();
+        {
             //Main loop flag
             bool quit = false;
             
@@ -292,10 +359,19 @@ int main( int argc, char* args[] )
                     
                     //Handle input for the dot
                     yar1.handleEvent( e );
+                    dot.handleEvent( e );
                 }
                 
                 //Move the dot and check collision
                 yar1.move( wall );
+            
+                //Move the dot and check collision
+                dot.move( otherDot.getColliders() );
+                
+
+
+               
+                //bullet1.move( wall );
                 
                 //Clear screen
                 SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
@@ -308,6 +384,67 @@ int main( int argc, char* args[] )
                 //Render dot
                 egg1.render();
                 yar1.render();
+                //dot.render();
+                //otherDot.render();
+                const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
+                
+              // if( !checkCollision(dot.getColliders(),otherDot.getColliders()))
+               //{       egg1.close();
+                 //  printf("kkkk");}
+                
+                if(currentKeyStates[ SDL_SCANCODE_SPACE ]  )
+                {
+                    for (int i=0; i<MAX_BULLETS; i++)
+                    {
+                        if (arrayofBullets[i].isActive == false)
+                        {
+                            arrayofBullets[i].mPosX = yar1.mPosX + 25;
+                            arrayofBullets[i].mPosY= yar1.mPosY ;
+                            arrayofBullets[i].isActive = true;
+                            break;
+                        }
+                    }
+                    //update game objects
+                    for (int i=0; i<MAX_BULLETS; i++)
+                    {
+                        
+                        if (arrayofBullets[i].isActive == true)
+                        {
+                            
+                           
+                            
+                                arrayofBullets[i].mPosX += 100;
+                            
+                        //if(arrayofBullets[i].mPosY == egg1.mPosX)
+                          //  egg1.mPosX+=100;
+                               
+                            
+                          
+                           
+                            
+                            if (arrayofBullets[i].mPosX > SCREEN_WIDTH)
+                            {
+                                
+                                arrayofBullets[i].isActive = false;
+                            }
+                            
+                            
+                               
+                        }
+                    }
+                    
+                    
+                    for (int i=0; i<MAX_BULLETS; i++)
+                    {
+                        if (arrayofBullets[i].isActive == true)
+                        {
+                            arrayofBullets[i].render();
+                            
+                        }
+                    }
+                    
+                }
+
 
                 
                 //Update screen
@@ -319,7 +456,8 @@ int main( int argc, char* args[] )
     //Free resources and close SDL
     
     yar1.close();
-    egg1.close();
+   
+    bullet1.close();
 
     close();
     

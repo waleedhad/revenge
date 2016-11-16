@@ -29,6 +29,7 @@ public:
     
     //Initializes the variables
     Yar();
+    Yar(int x, int y);
     
     //Takes key presses and adjusts the Yar's velocity
     void handleEvent( SDL_Event& e );
@@ -41,11 +42,12 @@ public:
     
     bool loadMedia();
     bool checkCollision( SDL_Rect a, SDL_Rect b );
+    //The X and Y offsets of the Yar
+    int mPosX, mPosY;
+
     void close();
     
 private:
-    //The X and Y offsets of the Yar
-    int mPosX, mPosY;
     
     //The velocity of the Yar
     int mVelX, mVelY;

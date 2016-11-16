@@ -27,6 +27,22 @@ Yar::Yar()
 }
 
 
+Yar::Yar(int x, int y)
+{
+    //Initialize the offsets
+    mPosX = x;
+    mPosY = y;
+    
+    //Set collision box dimension
+    mCollider.w = Yar_WIDTH;
+    mCollider.h = Yar_HEIGHT;
+    
+    //Initialize the velocity
+    mVelX = 0;
+    mVelY = 0;
+}
+
+
 void Yar::handleEvent( SDL_Event& e )
 {
     //If a key was pressed

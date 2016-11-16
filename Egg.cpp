@@ -27,6 +27,7 @@ Egg::Egg(int PosX , int PosY)
 }
 
 
+
 void Egg::handleEvent( SDL_Event& e )
 {
     //If a key was pressed
@@ -103,6 +104,9 @@ bool Egg::loadMedia()
     
     return success;
 }
+
+
+
 
 bool Egg::checkCollision( SDL_Rect a, SDL_Rect b )
 {

@@ -43,7 +43,7 @@ public:
     bool checkCollision( SDL_Rect a, SDL_Rect b );
     void close();
     
-private:
+//private:
     //The X and Y offsets of the Egg
     int mPosX, mPosY;
     
