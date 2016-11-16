@@ -277,6 +277,52 @@ bool checkCollision( std::vector<SDL_Rect>& a, std::vector<SDL_Rect>& b )
     //If neither set of collision boxes touched
     return false;
 }
+
+bool checkCollision( SDL_Rect a, SDL_Rect b )
+{
+    //The sides of the rectangles
+    int leftA, leftB;
+    int rightA, rightB;
+    int topA, topB;
+    int bottomA, bottomB;
+    
+    //Calculate the sides of rect A
+    leftA = a.x;
+    rightA = a.x + a.w;
+    topA = a.y;
+    bottomA = a.y + a.h;
+    
+    //Calculate the sides of rect B
+    leftB = b.x;
+    rightB = b.x + b.w;
+    topB = b.y;
+    bottomB = b.y + b.h;
+    
+    //If any of the sides from A are outside of B
+    if( bottomA <= topB )
+    {
+        return false;
+    }
+    
+    if( topA >= bottomB )
+    {
+        return false;
+    }
+    
+    if( rightA <= leftB )
+    {
+        return false;
+    }
+    
+    if( leftA >= rightB )
+    {
+        return false;
+    }
+    
+    //If none of the sides from A are outside B
+    return true;
+}
+
 void close()
 {
     //Destroy window
@@ -296,25 +342,26 @@ int main( int argc, char* args[] )
     
     Yar yar1;
    
-    Egg egg1(100,100);
-    Bullet bullet1(10,100);
+    Egg egg1;
+   
+    Egg(arrEggs[10]);
+    Bullet bullet1;
     //The dot that will be moving around on the screen
-    Bullet dot( 0, 0 );
+    //Bullet dot( 0, 0 );
     
     //The dot that will be collided against
-    Bullet otherDot( SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4 );
+   // Bullet otherDot( SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4 );
     
-   
+  
     
 
     
     
     
     //makes all bullets false
-    for (int i=0; i<MAX_BULLETS; i++)
-    {
-        arrayofBullets[i].isActive = false;
-    }
+    for(int i=0; i< 10; i++)
+        arrEggs[i].isActive = false;
+    
 
     
     
@@ -340,10 +387,22 @@ int main( int argc, char* args[] )
             
             //Set the wall
             SDL_Rect wall;
-            wall.x = 300;
-            wall.y = 40;
-            wall.w = 40;
-            wall.h = 400;
+            wall.x = 200;
+            wall.y = 1;
+            wall.w = 100;
+            wall.h = SCREEN_HEIGHT;
+            
+            for(int i=0; i<10; i++)
+           
+            {
+                arrEggs[i].mPosX=500;
+                arrEggs[i].mPosY=40*(i+1);
+                arrEggs[i].mCollider.x = arrEggs[i].mPosX;
+                arrEggs[i].mCollider.y = arrEggs[i].mPosY;
+            }
+            
+            
+          
             
             //While application is running
             while( !quit )
@@ -359,14 +418,20 @@ int main( int argc, char* args[] )
                     
                     //Handle input for the dot
                     yar1.handleEvent( e );
-                    dot.handleEvent( e );
+                    bullet1.handleEvent( e );
                 }
                 
                 //Move the dot and check collision
-                yar1.move( wall );
+                yar1.move( wall);
+                bullet1.move(wall);
+                
+                
+                
+                
+                
             
                 //Move the dot and check collision
-                dot.move( otherDot.getColliders() );
+                //dot.move( otherDot.getColliders() );
                 
 
 
@@ -382,8 +447,17 @@ int main( int argc, char* args[] )
                 SDL_RenderDrawRect( gRenderer, &wall );
                 
                 //Render dot
-                egg1.render();
+               
+                for(int i=0; i<10; i++)
+                   
+                    {
+                        
+                        arrEggs[i].render();
+                    }
+                
+                //egg1.render();
                 yar1.render();
+                //bullet1.render();
                 //dot.render();
                 //otherDot.render();
                 const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
@@ -394,58 +468,64 @@ int main( int argc, char* args[] )
                 
                 if(currentKeyStates[ SDL_SCANCODE_SPACE ]  )
                 {
-                    for (int i=0; i<MAX_BULLETS; i++)
-                    {
-                        if (arrayofBullets[i].isActive == false)
+                    
+                    
+                   
+                        if (bullet1.isActive == false)
                         {
-                            arrayofBullets[i].mPosX = yar1.mPosX + 25;
-                            arrayofBullets[i].mPosY= yar1.mPosY ;
-                            arrayofBullets[i].isActive = true;
-                            break;
+                            bullet1.mPosX = yar1.mPosX + 25;
+                            bullet1.mPosY= yar1.mPosY ;
+                            bullet1.isActive = true;
+                            //break;
                         }
-                    }
+                    
                     //update game objects
-                    for (int i=0; i<MAX_BULLETS; i++)
-                    {
+                
                         
-                        if (arrayofBullets[i].isActive == true)
+                        if (bullet1.isActive == true)
                         {
                             
                            
                             
-                                arrayofBullets[i].mPosX += 100;
+                                bullet1.mPosX += 100;
                             
-                        //if(arrayofBullets[i].mPosY == egg1.mPosX)
-                          //  egg1.mPosX+=100;
-                               
+                            for(int i=0; i<10; i++)
+                            {
+                             
+                            if(checkCollision(bullet1.mCollider,arrEggs[i].mCollider))
+                                
+                            {
                             
-                          
+                                {arrEggs[i].mPosX += SCREEN_WIDTH+10;
+                                    printf("kkk");}
+                                
+                            }
+                                
+                            }
                            
                             
-                            if (arrayofBullets[i].mPosX > SCREEN_WIDTH)
+                            if (bullet1.mPosX > SCREEN_WIDTH)
                             {
                                 
-                                arrayofBullets[i].isActive = false;
+                                bullet1.isActive = false;
                             }
                             
                             
                                
+                        
                         }
-                    }
                     
                     
-                    for (int i=0; i<MAX_BULLETS; i++)
-                    {
-                        if (arrayofBullets[i].isActive == true)
+                        if (bullet1.isActive == true)
                         {
-                            arrayofBullets[i].render();
+                            bullet1.render();
                             
                         }
-                    }
+                
                     
                 }
-
-
+                
+                
                 
                 //Update screen
                 SDL_RenderPresent( gRenderer );

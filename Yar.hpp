@@ -47,7 +47,7 @@ public:
 
     void close();
     
-private:
+//private:
     
     //The velocity of the Yar
     int mVelX, mVelY;

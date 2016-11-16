@@ -30,7 +30,7 @@ public:
     static const int Bullet_HEIGHT = 20;
     
     //Maximum axis velocity of the Bullet
-    static const int Bullet_VEL = 10;
+    static const int Bullet_VEL = 5;
     
     //Initializes the variables
     Bullet( int , int);
@@ -72,7 +72,7 @@ public:
     
     void close();
     
-private:
+//private:
     
     //The velocity of the Bullet
     int mVelX, mVelY;

@@ -181,7 +181,7 @@ bool Bullet::loadMedia()
     bool success = true;
     
     //Load press texture
-    if( !gBulletTexture.loadFromFile( "Bullet.bmp" ) )
+    if( !gBulletTexture.loadFromFile( "Bullet.png" ) )
     {
         printf( "Failed to load Bullet texture!\n" );
         success = false;

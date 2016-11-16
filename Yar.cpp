@@ -111,7 +111,7 @@ bool Yar::loadMedia()
     bool success = true;
     
     //Load press texture
-    if( !gYarTexture.loadFromFile( "Yar.bmp" ) )
+    if( !gYarTexture.loadFromFile( "Yar.png" ) )
     {
         printf( "Failed to load Yar texture!\n" );
         success = false;

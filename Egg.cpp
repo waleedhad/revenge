@@ -11,19 +11,41 @@
 LTexture gEggTexture;
 
 
-Egg::Egg(int PosX , int PosY)
+Egg::Egg()
 {
     //Initialize the offsets
-    mPosX = PosX;
-    mPosY = PosY;
+    mPosX =0;
+    mPosY = 0;
     
     //Set collision box dimension
-    mCollider.w = Egg_WIDTH;
-    mCollider.h = Egg_HEIGHT;
+    mCollider.w = Egg_WIDTH+30;
+    mCollider.h = Egg_HEIGHT+40;
+    
     
     //Initialize the velocity
     mVelX = 0;
     mVelY = 0;
+}
+
+Egg::Egg(Egg arr[10])
+{
+    //Initialize the offsets
+    
+    for(int i=0; i<10; i++)
+    {arr[i].mPosX =0;
+    arr[i].mPosY = 0;
+        //Set collision box dimension
+        arr[i].mCollider.w = Egg_WIDTH+30;
+        arr[i].mCollider.h = Egg_HEIGHT+40;
+        
+        
+        //Initialize the velocity
+        arr[i].mVelX = 0;
+        arr[i].mVelY = 0;
+    
+    }
+    
+    
 }
 
 
@@ -96,7 +118,7 @@ bool Egg::loadMedia()
     bool success = true;
     
     //Load press texture
-    if( !gEggTexture.loadFromFile( "Egg.bmp" ) )
+    if( !gEggTexture.loadFromFile( "Egg.png" ) )
     {
         printf( "Failed to load Egg texture!\n" );
         success = false;

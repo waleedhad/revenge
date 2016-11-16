@@ -21,14 +21,17 @@ class Egg
 {
 public:
     //The dimensions of the Egg
-    static const int Egg_WIDTH = 20;
-    static const int Egg_HEIGHT = 20;
+    static const int Egg_WIDTH = 10;
+    static const int Egg_HEIGHT = 10;
     
     //Maximum axis velocity of the Egg
     static const int Egg_VEL = 0;
     
     //Initializes the variables
-    Egg(int PosX , int PosY);
+    Egg();
+    Egg(Egg arr[10]);
+    
+    bool isActive;
     
     //Takes key presses and adjusts the Egg's velocity
     void handleEvent( SDL_Event& e );
