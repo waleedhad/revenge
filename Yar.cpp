@@ -71,14 +71,14 @@ void Yar::handleEvent( SDL_Event& e )
     }
 }
 
-void Yar::move( SDL_Rect& wall )
+void Yar::move( )
 {
     //Move the Yar left or right
     mPosX += mVelX;
     mCollider.x = mPosX;
     
     //If the Yar collided or went too far to the left or right
-    if( ( mPosX < 0 ) || ( mPosX + Yar_WIDTH > SCREEN_WIDTH ) || checkCollision( mCollider, wall ) )
+    if( ( mPosX < 0 ) || ( mPosX + Yar_WIDTH > SCREEN_WIDTH ) )
     {
         //Move back
         mPosX -= mVelX;
@@ -90,7 +90,7 @@ void Yar::move( SDL_Rect& wall )
     mCollider.y = mPosY;
     
     //If the Yar collided or went too far up or down
-    if( ( mPosY < 0 ) || ( mPosY + Yar_HEIGHT > SCREEN_HEIGHT ) || checkCollision( mCollider, wall ) )
+    if( ( mPosY < 0 ) || ( mPosY + Yar_HEIGHT > SCREEN_HEIGHT ) )
     {
         //Move back
         mPosY -= mVelY;

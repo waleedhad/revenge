@@ -1,13 +1,13 @@
 //
-//  bullet.hpp
+//  Energy.hpp
 //  revenge
 //
 //  Created by Asim on 11/14/16.
 //  Copyright © 2016 Waleed Al-Haddad. All rights reserved.
 //
 
-#ifndef bullet_hpp
-#define bullet_hpp
+#ifndef Energy_hpp
+#define Energy_hpp
 
 
 #include <stdio.h>
@@ -22,38 +22,40 @@
  const int SCREEN_HEIGHT = 480;
  */
 
-class Bullet
+class Energy
 {
 public:
-    //The dimensions of the Bullet
-    static const int Bullet_WIDTH = 10;
-    static const int Bullet_HEIGHT = 20;
+    //The dimensions of the Energy
+    static const int Energy_WIDTH = 15;
+    static const int Energy_HEIGHT = 20;
     
-    //Maximum axis velocity of the Bullet
-    static const int Bullet_VEL = 5;
+    //Maximum axis velocity of the Energy
+    static const int Energy_VEL = 10;
     
     //Initializes the variables
-    Bullet( int , int);
-     Bullet( );
-  
+    Energy( int , int);
+    Energy( );
     
     
-    //Takes key presses and adjusts the Bullet's velocity
+    
+    //Takes key presses and adjusts the Energy's velocity
     void handleEvent( SDL_Event& e );
     
-    //Moves the Bullet and checks collision
+    //Moves the Energy and checks collision
     void move( );
+    void Emove( );
     
-    //Shows the Bullet on the screen
+    //Shows the Energy on the screen
     void render();
     
     bool loadMedia();
     bool checkCollision( SDL_Rect a, SDL_Rect b );
-    //The X and Y offsets of the Bullet
+    //The X and Y offsets of the Energy
     int mPosX, mPosY;
     
     bool isActive;
-    void add_new_bullet();
+    bool GotYar;
+    void add_new_Energy();
     //Dot's collision boxes
     std::vector<SDL_Rect> mColliders;
     
@@ -64,20 +66,20 @@ public:
     //Gets the collision boxes
     std::vector<SDL_Rect>& getColliders();
     
-
+    
     
     void close();
     
-//private:
+    //private:
     
-    //The velocity of the Bullet
+    //The velocity of the Energy
     int mVelX, mVelY;
     
-    //Bullet's collision box
+    //Energy's collision box
     SDL_Rect mCollider;
 };
 
 
 
 
-#endif /* bullet_hpp */
+#endif /* Energy_hpp */

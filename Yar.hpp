@@ -35,7 +35,7 @@ public:
     void handleEvent( SDL_Event& e );
     
     //Moves the Yar and checks collision
-    void move( SDL_Rect& wall );
+    void move();
     
     //Shows the Yar on the screen
     void render();

@@ -27,26 +27,6 @@ Egg::Egg()
     mVelY = 0;
 }
 
-Egg::Egg(Egg arr[10])
-{
-    //Initialize the offsets
-    
-    for(int i=0; i<10; i++)
-    {arr[i].mPosX =0;
-    arr[i].mPosY = 0;
-        //Set collision box dimension
-        arr[i].mCollider.w = Egg_WIDTH+30;
-        arr[i].mCollider.h = Egg_HEIGHT+40;
-        
-        
-        //Initialize the velocity
-        arr[i].mVelX = 0;
-        arr[i].mVelY = 0;
-    
-    }
-    
-    
-}
 
 
 
@@ -78,14 +58,14 @@ void Egg::handleEvent( SDL_Event& e )
     }
 }
 
-void Egg::move( SDL_Rect& wall )
+void Egg::move( )
 {
     //Move the Egg left or right
     mPosX += mVelX;
     mCollider.x = mPosX;
     
     //If the Egg collided or went too far to the left or right
-    if( ( mPosX < 0 ) || ( mPosX + Egg_WIDTH > SCREEN_WIDTH ) || checkCollision( mCollider, wall ) )
+    if( ( mPosX < 0 ) || ( mPosX + Egg_WIDTH > SCREEN_WIDTH ))
     {
         //Move back
         mPosX -= mVelX;
@@ -97,7 +77,7 @@ void Egg::move( SDL_Rect& wall )
     mCollider.y = mPosY;
     
     //If the Egg collided or went too far up or down
-    if( ( mPosY < 0 ) || ( mPosY + Egg_HEIGHT > SCREEN_HEIGHT ) || checkCollision( mCollider, wall ) )
+    if( ( mPosY < 0 ) || ( mPosY + Egg_HEIGHT > SCREEN_HEIGHT ))
     {
         //Move back
         mPosY -= mVelY;

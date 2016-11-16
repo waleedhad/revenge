@@ -16,6 +16,10 @@
 #include "Yar.hpp"
 #include "Egg.hpp"
 #include "bullet.hpp"
+#include "Energy.hpp"
+#include "Energy.hpp"
+#include "Monster.hpp"
+#include "Cannon.hpp"
 
 const int MAX_BULLETS = 1;
 Bullet arrayofBullets[MAX_BULLETS];
@@ -239,44 +243,6 @@ bool init()
 
 
 
-bool checkCollision( std::vector<SDL_Rect>& a, std::vector<SDL_Rect>& b )
-{
-    //The sides of the rectangles
-    int leftA, leftB;
-    int rightA, rightB;
-    int topA, topB;
-    int bottomA, bottomB;
-    
-    //Go through the A boxes
-    for( int Abox = 0; Abox < a.size(); Abox++ )
-    {
-        //Calculate the sides of rect A
-        leftA = a[ Abox ].x;
-        rightA = a[ Abox ].x + a[ Abox ].w;
-        topA = a[ Abox ].y;
-        bottomA = a[ Abox ].y + a[ Abox ].h;
-        
-        //Go through the B boxes
-        for( int Bbox = 0; Bbox < b.size(); Bbox++ )
-        {
-            //Calculate the sides of rect B
-            leftB = b[ Bbox ].x;
-            rightB = b[ Bbox ].x + b[ Bbox ].w;
-            topB = b[ Bbox ].y;
-            bottomB = b[ Bbox ].y + b[ Bbox ].h;
-            
-            //If no sides from A are outside of B
-            if( ( ( bottomA >= bottomB ) || ( topA >= topB ) || ( rightA <= rightB ) || ( leftA >= leftB ) ) == false )
-            {
-                //A collision is detected
-                return true;
-            }
-        }
-    }
-    
-    //If neither set of collision boxes touched
-    return false;
-}
 
 bool checkCollision( SDL_Rect a, SDL_Rect b )
 {
@@ -338,14 +304,19 @@ void close()
 
 
 int main( int argc, char* args[] )
-{
-    
+{   int count=1;
+    srand (time(NULL));
     Yar yar1;
    
     Egg egg1;
+  
+    Cannon cannon(-20,SCREEN_HEIGHT/2);
+    Monster monster(SCREEN_WIDTH-100,SCREEN_HEIGHT/2);
    
-    Egg(arrEggs[10]);
+    Egg arrEggs[10];
     Bullet bullet1;
+    Energy energy1;
+    Energy arrEnergy[10];
     //The dot that will be moving around on the screen
     //Bullet dot( 0, 0 );
     
@@ -359,8 +330,7 @@ int main( int argc, char* args[] )
     
     
     //makes all bullets false
-    for(int i=0; i< 10; i++)
-        arrEggs[i].isActive = false;
+  
     
 
     
@@ -373,7 +343,7 @@ int main( int argc, char* args[] )
     else
     {
         //Load media
-        if( !yar1.loadMedia() || !egg1.loadMedia() || !bullet1.loadMedia() )
+        if( !yar1.loadMedia() || !egg1.loadMedia() || !bullet1.loadMedia() || !energy1.loadMedia() || !cannon.loadMedia() || !monster.loadMedia())
         {
             printf( "Failed to load media!\n" );
         }
@@ -402,6 +372,17 @@ int main( int argc, char* args[] )
             }
             
             
+            for(int i=0; i<10; i++)
+                
+            {
+                arrEnergy[i].mPosX=500+20;
+               arrEnergy[i].mPosY=40*(i+1);
+                arrEnergy[i].mCollider.x = arrEnergy[i].mPosX;
+               arrEnergy[i].mCollider.y = arrEnergy[i].mPosY;
+            }
+
+            
+            
           
             
             //While application is running
@@ -422,8 +403,11 @@ int main( int argc, char* args[] )
                 }
                 
                 //Move the dot and check collision
-                yar1.move( wall);
-                bullet1.move(wall);
+                yar1.move( );
+                bullet1.move();
+                energy1.move();
+                egg1.move();
+                
                 
                 
                 
@@ -451,12 +435,15 @@ int main( int argc, char* args[] )
                 for(int i=0; i<10; i++)
                    
                     {
-                        
+                        arrEnergy[i].render();
                         arrEggs[i].render();
+                        
                     }
                 
                 //egg1.render();
                 yar1.render();
+                cannon.render();
+                monster.render();
                 //bullet1.render();
                 //dot.render();
                 //otherDot.render();
@@ -468,9 +455,6 @@ int main( int argc, char* args[] )
                 
                 if(currentKeyStates[ SDL_SCANCODE_SPACE ]  )
                 {
-                    
-                    
-                   
                         if (bullet1.isActive == false)
                         {
                             bullet1.mPosX = yar1.mPosX + 25;
@@ -481,40 +465,33 @@ int main( int argc, char* args[] )
                     
                     //update game objects
                 
-                        
                         if (bullet1.isActive == true)
                         {
-                            
-                           
-                            
-                                bullet1.mPosX += 100;
+                            bullet1.mPosX += 100;
                             
                             for(int i=0; i<10; i++)
                             {
                              
                             if(checkCollision(bullet1.mCollider,arrEggs[i].mCollider))
                                 
-                            {
+                              {
                             
-                                {arrEggs[i].mPosX += SCREEN_WIDTH+10;
-                                    printf("kkk");}
+                                arrEggs[i].mPosX += SCREEN_WIDTH+10;
+                                
+                                arrEnergy[i].isActive=true;
+                                
+                              }
                                 
                             }
-                                
-                            }
-                           
+                            
                             
                             if (bullet1.mPosX > SCREEN_WIDTH)
                             {
                                 
                                 bullet1.isActive = false;
                             }
-                            
-                            
-                               
                         
-                        }
-                    
+                          }
                     
                         if (bullet1.isActive == true)
                         {
@@ -525,13 +502,36 @@ int main( int argc, char* args[] )
                     
                 }
                 
+                for(int i=0; i<10; i++)
+                {   if(arrEnergy[i].isActive==true)
+                        arrEnergy[i].Emove();
+                    
+                      //check collision with waterfall
+                    if(checkCollision(arrEnergy[i].mCollider, wall))
+                        arrEnergy[i].mPosY=SCREEN_HEIGHT+10;
+                    
+                       //check collision with yar
+                    if(checkCollision(arrEnergy[i].mCollider, yar1.mCollider))
+                        {
+                        arrEnergy[i].mPosY=SCREEN_HEIGHT+10;
+                        arrEnergy[i].GotYar=true;
+                        }
+                
+                }
                 
                 
                 //Update screen
                 SDL_RenderPresent( gRenderer );
             }
+            for(int i=0; i<10; i++)
+            {   if(arrEnergy[i].GotYar==true)
+                count++;
+            } printf("here %d",count);
+        
+        
         }
-    }
+        
+   }
     
     //Free resources and close SDL
     
