@@ -10,12 +10,9 @@
 #define Yar_hpp
 
 #include <stdio.h>
-#include "setup.h"
+#include "LTexture.hpp"
 
-/*
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
- */
+
 
 class Yar
 {
@@ -31,6 +28,8 @@ public:
     Yar();
     Yar(int x, int y);
     
+    //statuse
+    bool isActive;
     //Takes key presses and adjusts the Yar's velocity
     void handleEvent( SDL_Event& e );
     
@@ -39,8 +38,9 @@ public:
     
     //Shows the Yar on the screen
     void render();
-    
+    //load pic
     bool loadMedia();
+    
     bool checkCollision( SDL_Rect a, SDL_Rect b );
     //The X and Y offsets of the Yar
     int mPosX, mPosY;

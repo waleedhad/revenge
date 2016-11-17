@@ -1,19 +1,26 @@
 //
-//  class.h
+//  LTexture.hpp
 //  revenge
 //
+//  Created by Asim on 11/17/16.
+//  Copyright © 2016 Waleed Al-Haddad. All rights reserved.
 //
 
-#ifndef class_h
-#define class_h
+#ifndef LTexture_hpp
+#define LTexture_hpp
 
+
+#include <stdio.h>
+#include <string>
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
+//#include <SDL2_ttf/SDL_ttf.h>
 #include <stdio.h>
 #include <string>
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -60,8 +67,10 @@ private:
     //Image dimensions
     int mWidth;
     int mHeight;
+    
+    
 };
 
 
 
-#endif /* class_h */
+#endif /* LTexture_hpp */

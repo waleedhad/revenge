@@ -20,10 +20,14 @@
 #include "Energy.hpp"
 #include "Monster.hpp"
 #include "Cannon.hpp"
+#include "EnemeyBullet.hpp"
+#include "LTexture.hpp"
 
-const int MAX_BULLETS = 1;
+//const int MAX_BULLETS = 1;
 
 const int MAX_Eggs = 10;
+
+//const float shootDelayInMilliseconds = 5000;
 
 
 const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
@@ -308,11 +312,15 @@ void close()
 
 
 int main( int argc, char* args[] )
-{   // count no of collected energy;
-    int count=0;
+{
+   
+    
+    
+    // count no of collected energy;
+    int count=0,c;
     
     //time to randomlly move
-    srand (time(NULL));
+   srand( static_cast<unsigned int>(time(NULL)));
     
     
     // iinstantiateobjects for the game
@@ -322,11 +330,18 @@ int main( int argc, char* args[] )
     Monster monster(SCREEN_WIDTH-120,SCREEN_HEIGHT/2);
     Egg arrEggs[MAX_Eggs];
     Bullet bullet1;
+    EnemeyBullet enemyBullet(-10,-10);
+    
     Energy energy1;
     Energy arrEnergy[MAX_Eggs];
     
     //make all bullets false
     bullet1.isActive=false;
+    enemyBullet.isActive=false;
+    
+    //make monester status true
+    monster.isActive=true;
+
     
     //make all eggs false
     for (int i=0; i<MAX_Eggs; i++ )
@@ -342,7 +357,7 @@ int main( int argc, char* args[] )
     else
     {
         //Load media
-        if( !yar1.loadMedia() || !egg1.loadMedia() || !bullet1.loadMedia() || !energy1.loadMedia() || !cannon.loadMedia() || !monster.loadMedia())
+        if( !yar1.loadMedia() || !egg1.loadMedia() || !bullet1.loadMedia() || !energy1.loadMedia() || !cannon.loadMedia() || !monster.loadMedia() || !enemyBullet.loadMedia())
         {
             printf( "Failed to load media!\n" );
         }
@@ -350,6 +365,11 @@ int main( int argc, char* args[] )
         {
             //Main loop flag
             bool quit = false;
+            
+            
+            //Current time start time
+            unsigned int lastTime = 315, currentTime=100;
+            
             
             //Event handler
             SDL_Event e;
@@ -359,11 +379,11 @@ int main( int argc, char* args[] )
             wall.x = 200;
             wall.y = 1;
             wall.w = 100;
-            wall.h = SCREEN_HEIGHT;
+            wall.h = SCREEN_HEIGHT-1;
             
             //Set the Egges
             
-            for(int i=0; i<10; i++)
+            for(int i=0; i<MAX_Eggs; i++)
            
             {
                 arrEggs[i].mPosX=500;
@@ -373,7 +393,7 @@ int main( int argc, char* args[] )
             }
             
              //Set the Energy
-            for(int i=0; i<10; i++)
+            for(int i=0; i<MAX_Eggs; i++)
                 
             {
                 arrEnergy[i].mPosX=500+20;
@@ -381,6 +401,11 @@ int main( int argc, char* args[] )
                 arrEnergy[i].mCollider.x = arrEnergy[i].mPosX;
                arrEnergy[i].mCollider.y = arrEnergy[i].mPosY;
             }
+            
+            
+           
+            
+           
 
             
     
@@ -388,6 +413,13 @@ int main( int argc, char* args[] )
             //While application is running
             while( !quit )
             {
+                
+                // get start time
+                
+                //currentTime = SDL_GetTicks();
+                
+               
+                
                 //Handle events on queue
                 while( SDL_PollEvent( &e ) != 0 )
                 {
@@ -405,16 +437,22 @@ int main( int argc, char* args[] )
                 //Move the objects and check collision
                 yar1.move( );
                 bullet1.move();
+                enemyBullet.move();
                 energy1.move();
                 egg1.move();
+                cannon.move(yar1.mPosY);
                 
-            
+                //Set the cannon
+                
+                
+                
+               
                 
                 //Clear screen
                 SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
                 SDL_RenderClear( gRenderer );
                 
-                //Render wall
+                //Render water fall
                 SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
                 SDL_RenderDrawRect( gRenderer, &wall );
                 
@@ -454,7 +492,7 @@ int main( int argc, char* args[] )
                             
                             //check collision between eggs and bullet
                             
-                            for(int i=0; i<10; i++)
+                            for(int i=0; i<MAX_Eggs; i++)
                             {
                              
                             if(checkCollision(bullet1.mCollider,arrEggs[i].mCollider))
@@ -485,11 +523,11 @@ int main( int argc, char* args[] )
                         }
                 
                     
-                }
+                }// if [space]
                 
                 // Update energy object
                 
-                for(int i=0; i<10; i++)
+                for(int i=0; i<MAX_Eggs; i++)
                 {   if(arrEnergy[i].isActive==true)
                         arrEnergy[i].Emove();
                     
@@ -507,9 +545,78 @@ int main( int argc, char* args[] )
                 }
                 
                 
+                
+                    
+                    //printf(" %d  hello", rand()%10);
+                    //lastTime = SDL_GetTicks();
+                    //printf("%u,      %u \n",SDL_GetTicks() ,lastTime);
+                  
+                    
+                    if(monster.isActive==true)
+
+
+                   {
+                       
+                    
+                    if (enemyBullet.isActive == false)
+                    {
+                        enemyBullet.mPosX = monster.mPosX + 25;
+                        enemyBullet.mPosY= monster.mPosY ;
+                        c=rand()%10;
+                        if ( c < 2)
+                        enemyBullet.isActive = true;
+                        //break;
+                    }
+                    
+                    //update game objects
+                    
+                    if (enemyBullet.isActive == true)
+                        
+                    {
+                        
+                        
+            
+                        enemyBullet.mPosX-= enemyBullet.EnemeyBullet_VEL/5;
+                        
+                        //check collision between Yar and Enemeybullet
+                        
+                       
+                            
+                        
+                        if(checkCollision(yar1.mCollider, enemyBullet.mCollider))
+                            
+                        {
+                            
+                            yar1.mPosX-= SCREEN_HEIGHT+10;
+                            yar1.isActive=false;
+                            
+                        }
+
+                        
+                       
+                        if (enemyBullet.mPosX < 0)
+                        {
+                            
+                            enemyBullet.isActive = false;
+                        
+                        }
+                        
+                    }
+                    
+                    if (enemyBullet.isActive == true)
+                    {
+                        enemyBullet.render();
+                        
+                    }
+                    
+                
+                   
+                }
+                
+                
                 //Update screen
                 SDL_RenderPresent( gRenderer );
-            }
+            }// main game loop
             
             //count no of collected energy;
             for(int i=0; i<10; i++)
@@ -518,9 +625,9 @@ int main( int argc, char* args[] )
             } printf("here %d",count);
         
         
-        }
+        }// else end
         
-   }
+   }//main end
     
     //Free resources and close SDL
     

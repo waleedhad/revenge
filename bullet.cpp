@@ -7,8 +7,7 @@
 //
 
 #include "bullet.hpp"
-#include<iostream>
-#include "setup.h"
+
 
 
 

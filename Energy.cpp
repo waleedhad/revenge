@@ -7,8 +7,7 @@
 //
 
 #include "Energy.hpp"
-#include<iostream>
-#include "setup.h"
+
 
 
 
