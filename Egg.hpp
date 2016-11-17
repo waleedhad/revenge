@@ -30,7 +30,7 @@ public:
     //Initializes the variables
     Egg();
   
-    
+    //status
     bool isActive;
     
     //Takes key presses and adjusts the Egg's velocity
@@ -41,9 +41,9 @@ public:
     
     //Shows the Egg on the screen
     void render();
-    
+    // load egg pic
     bool loadMedia();
-    bool checkCollision( SDL_Rect a, SDL_Rect b );
+ 
     void close();
     
 //private:

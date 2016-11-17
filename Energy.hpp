@@ -53,19 +53,10 @@ public:
     //The X and Y offsets of the Energy
     int mPosX, mPosY;
     
+    //status
     bool isActive;
     bool GotYar;
-    void add_new_Energy();
-    //Dot's collision boxes
-    std::vector<SDL_Rect> mColliders;
-    
-    //Moves the collision boxes relative to the dot's offset
-    void shiftColliders();
-    
-    
-    //Gets the collision boxes
-    std::vector<SDL_Rect>& getColliders();
-    
+       
     
     
     void close();

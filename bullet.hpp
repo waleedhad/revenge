@@ -25,6 +25,7 @@
 class Bullet
 {
 public:
+    
     //The dimensions of the Bullet
     static const int Bullet_WIDTH = 10;
     static const int Bullet_HEIGHT = 20;
@@ -33,7 +34,7 @@ public:
     static const int Bullet_VEL = 5;
     
     //Initializes the variables
-    Bullet( int , int);
+     Bullet( int , int);
      Bullet( );
   
     
@@ -46,25 +47,13 @@ public:
     
     //Shows the Bullet on the screen
     void render();
-    
+    //load bullet png
     bool loadMedia();
-    bool checkCollision( SDL_Rect a, SDL_Rect b );
+   
     //The X and Y offsets of the Bullet
     int mPosX, mPosY;
-    
+    // bullet status
     bool isActive;
-    void add_new_bullet();
-    //Dot's collision boxes
-    std::vector<SDL_Rect> mColliders;
-    
-    //Moves the collision boxes relative to the dot's offset
-    void shiftColliders();
-    
-    
-    //Gets the collision boxes
-    std::vector<SDL_Rect>& getColliders();
-    
-
     
     void close();
     
