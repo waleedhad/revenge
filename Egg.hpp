@@ -23,9 +23,13 @@ public:
     //Maximum axis velocity of the Egg
     static const int Egg_VEL = 0;
     
+    double t=0; 
+    
     //Initializes the variables
     Egg();
   
+    void set_phase(double phase);
+    
     //status
     bool isActive;
     
@@ -39,6 +43,8 @@ public:
     void render();
     // load egg pic
     bool loadMedia();
+    
+    void random_move();
  
     void close();
     

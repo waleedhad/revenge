@@ -67,6 +67,14 @@ mPosX -= (3+rand()%3) ;
 mCollider.x =  mPosX;
 }
 
+void Energy::follow_eggs(int x, int y){
+    
+    mPosX=x+18;
+    mPosY=y;
+    mCollider.x =  mPosX;
+    mCollider.y =  mPosY;
+    
+}
 
 void Energy::render()
 {

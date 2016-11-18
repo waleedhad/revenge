@@ -14,8 +14,8 @@ LTexture gEggTexture;
 Egg::Egg()
 {
     //Initialize the offsets
-    mPosX =0;
-    mPosY = 0;
+    mPosX =350;
+    mPosY =350;
     
     //Set collision box dimension
     mCollider.w = Egg_WIDTH+30;
@@ -23,8 +23,9 @@ Egg::Egg()
     
     
     //Initialize the velocity
-    mVelX = 0;
-    mVelY = 0;
+    mVelX = 1;
+    mVelY = 1;
+    t=0;
 }
 
 
@@ -61,29 +62,52 @@ void Egg::handleEvent( SDL_Event& e )
 void Egg::move( )
 {
     //Move the Egg left or right
-    mPosX += mVelX;
+   //mPosX += mVelX;
+    
     mCollider.x = mPosX;
     
     //If the Egg collided or went too far to the left or right
-    if( ( mPosX < 0 ) || ( mPosX + Egg_WIDTH > SCREEN_WIDTH ))
+    if( ( mPosX < 300 ) || ( mPosX + Egg_WIDTH > SCREEN_WIDTH ))
     {
         //Move back
-        mPosX -= mVelX;
+        mPosX= - mVelX;
         mCollider.x = mPosX;
     }
     
     //Move the Egg up or down
-    mPosY += mVelY;
+    //mPosY += mVelY;
+    
     mCollider.y = mPosY;
     
     //If the Egg collided or went too far up or down
     if( ( mPosY < 0 ) || ( mPosY + Egg_HEIGHT > SCREEN_HEIGHT ))
     {
         //Move back
-        mPosY -= mVelY;
+        mPosY = - mVelY;
         mCollider.y = mPosY;
     }
 }
+
+void Egg::set_phase(double phase){
+    
+    t=phase;
+}
+
+void Egg::random_move( ){
+    
+    
+    if ( t > 2*3.145){t=0;}
+    t +=0.03;
+    int cy=240;
+    int cx=600;
+        mPosX = 200*cos(t) + cx;
+        mPosY = 200*sin(t) + cy;
+    
+    mCollider.y =  mPosY;
+    mCollider.x =  mPosX;
+    
+}
+
 
 void Egg::render()
 {

@@ -45,6 +45,8 @@ public:
     void move( );
     void Emove( );
     
+    void follow_eggs(int x, int y);
+    
     //Shows the Energy on the screen
     void render();
     
