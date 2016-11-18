@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		640208271DDA42A600BCA553 /* bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640208251DDA42A600BCA553 /* bullet.cpp */; };
 		6402085C1DDCA27D00BCA553 /* Energy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6402085A1DDCA27D00BCA553 /* Energy.cpp */; };
-		640208791DDD0ED500BCA553 /* Cannon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640208771DDD0ED500BCA553 /* Cannon.cpp */; };
-		6402087C1DDD0EED00BCA553 /* Monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6402087A1DDD0EED00BCA553 /* Monster.cpp */; };
 		640208821DDD882300BCA553 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640208811DDD882300BCA553 /* SDL2_ttf.framework */; };
 		6402088F1DDDA97600BCA553 /* EnemeyBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6402088D1DDDA97600BCA553 /* EnemeyBullet.cpp */; };
+		640208941DDF032900BCA553 /* Cannon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640208901DDF032900BCA553 /* Cannon.cpp */; };
+		640208951DDF032900BCA553 /* Monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640208921DDF032900BCA553 /* Monster.cpp */; };
 		7E33B1D41DD8CE7F00927736 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E33B1D21DD8CE7F00927736 /* SDL2_image.framework */; };
 		7E33B1D51DD8CE7F00927736 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E33B1D31DD8CE7F00927736 /* SDL2.framework */; };
 		7E33B1DD1DD8E66700927736 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E33B1DB1DD8D50900927736 /* main.cpp */; };
@@ -37,13 +37,13 @@
 		640208261DDA42A600BCA553 /* bullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bullet.hpp; sourceTree = SOURCE_ROOT; };
 		6402085A1DDCA27D00BCA553 /* Energy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Energy.cpp; sourceTree = SOURCE_ROOT; };
 		6402085B1DDCA27D00BCA553 /* Energy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Energy.hpp; sourceTree = SOURCE_ROOT; };
-		640208771DDD0ED500BCA553 /* Cannon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cannon.cpp; path = ../../../../../Library/Frameworks/SDL_ttf.framework/Cannon.cpp; sourceTree = "<group>"; };
-		640208781DDD0ED500BCA553 /* Cannon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Cannon.hpp; path = ../../../../../Library/Frameworks/SDL_ttf.framework/Cannon.hpp; sourceTree = "<group>"; };
-		6402087A1DDD0EED00BCA553 /* Monster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Monster.cpp; path = ../../../../../Library/Frameworks/SDL_ttf.framework/Monster.cpp; sourceTree = "<group>"; };
-		6402087B1DDD0EED00BCA553 /* Monster.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Monster.hpp; path = ../../../../../Library/Frameworks/SDL_ttf.framework/Monster.hpp; sourceTree = "<group>"; };
 		640208811DDD882300BCA553 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		6402088D1DDDA97600BCA553 /* EnemeyBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnemeyBullet.cpp; sourceTree = SOURCE_ROOT; };
 		6402088E1DDDA97600BCA553 /* EnemeyBullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EnemeyBullet.hpp; sourceTree = SOURCE_ROOT; };
+		640208901DDF032900BCA553 /* Cannon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cannon.cpp; sourceTree = SOURCE_ROOT; };
+		640208911DDF032900BCA553 /* Cannon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cannon.hpp; sourceTree = SOURCE_ROOT; };
+		640208921DDF032900BCA553 /* Monster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Monster.cpp; sourceTree = SOURCE_ROOT; };
+		640208931DDF032900BCA553 /* Monster.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Monster.hpp; sourceTree = SOURCE_ROOT; };
 		7E33B1D01DD8CE6100927736 /* Yar.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Yar.bmp; sourceTree = "<group>"; };
 		7E33B1D21DD8CE7F00927736 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		7E33B1D31DD8CE7F00927736 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -103,6 +103,10 @@
 		7E7C0B021DD35E9A00B92685 /* revenge */ = {
 			isa = PBXGroup;
 			children = (
+				640208901DDF032900BCA553 /* Cannon.cpp */,
+				640208911DDF032900BCA553 /* Cannon.hpp */,
+				640208921DDF032900BCA553 /* Monster.cpp */,
+				640208931DDF032900BCA553 /* Monster.hpp */,
 				7E33B1DB1DD8D50900927736 /* main.cpp */,
 				640208251DDA42A600BCA553 /* bullet.cpp */,
 				640208261DDA42A600BCA553 /* bullet.hpp */,
@@ -113,10 +117,6 @@
 				6402085B1DDCA27D00BCA553 /* Energy.hpp */,
 				7E4D96D61DD9A29400523CAD /* Yar.hpp */,
 				7E33B1D61DD8CEDE00927736 /* LTexture.hpp */,
-				640208771DDD0ED500BCA553 /* Cannon.cpp */,
-				6402087A1DDD0EED00BCA553 /* Monster.cpp */,
-				6402087B1DDD0EED00BCA553 /* Monster.hpp */,
-				640208781DDD0ED500BCA553 /* Cannon.hpp */,
 				6402088D1DDDA97600BCA553 /* EnemeyBullet.cpp */,
 				6402088E1DDDA97600BCA553 /* EnemeyBullet.hpp */,
 			);
@@ -181,12 +181,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				640208791DDD0ED500BCA553 /* Cannon.cpp in Sources */,
 				7E4D96DB1DD9C20500523CAD /* Egg.cpp in Sources */,
 				7E4D96D71DD9A29400523CAD /* Yar.cpp in Sources */,
-				6402087C1DDD0EED00BCA553 /* Monster.cpp in Sources */,
 				6402088F1DDDA97600BCA553 /* EnemeyBullet.cpp in Sources */,
 				6402085C1DDCA27D00BCA553 /* Energy.cpp in Sources */,
+				640208951DDF032900BCA553 /* Monster.cpp in Sources */,
+				640208941DDF032900BCA553 /* Cannon.cpp in Sources */,
 				7E33B1DD1DD8E66700927736 /* main.cpp in Sources */,
 				640208271DDA42A600BCA553 /* bullet.cpp in Sources */,
 			);
