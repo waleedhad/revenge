@@ -13,6 +13,8 @@
 
 //Scene textures
 
+#include <iostream>
+
 #include "Yar.hpp"
 #include "Egg.hpp"
 #include "bullet.hpp"
@@ -310,6 +312,7 @@ void close()
     SDL_Quit();
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 int main( int argc, char* args[] )
 {
@@ -317,7 +320,7 @@ int main( int argc, char* args[] )
     
     
     // count no of collected energy;
-    int count=0,c;
+    int count=0;
     
     //time to randomlly move
    srand( static_cast<unsigned int>(time(NULL)));
@@ -330,7 +333,12 @@ int main( int argc, char* args[] )
     Monster monster(SCREEN_WIDTH-120,SCREEN_HEIGHT/2);
     Egg arrEggs[MAX_Eggs];
     Bullet bullet1;
-    EnemeyBullet enemyBullet(-10,-10);
+    EnemeyBullet enemyBullet( monster.mPosX , monster.mPosY);
+
+    
+    //EnemeyBullet enemyBullet( monster.mPosX , monster.mPosY);
+
+
     
     Energy energy1;
     Energy arrEnergy[MAX_Eggs];
@@ -368,7 +376,7 @@ int main( int argc, char* args[] )
             
             
             //Current time start time
-            unsigned int lastTime = 315, currentTime=100;
+            //unsigned int lastTime = 315, currentTime=100;
             
             
             //Event handler
@@ -446,8 +454,6 @@ int main( int argc, char* args[] )
                 
                 
                 
-               
-                
                 //Clear screen
                 SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
                 SDL_RenderClear( gRenderer );
@@ -505,12 +511,11 @@ int main( int argc, char* args[] )
                                 
                               }
                                 
-                             }
+                              }
                             
                             
                             if (bullet1.mPosX > SCREEN_WIDTH)
                             {
-                                
                                 bullet1.isActive = false;
                             }
                         
@@ -527,22 +532,22 @@ int main( int argc, char* args[] )
                 
                 // Update energy object
                 
-                for(int i=0; i<MAX_Eggs; i++)
-                {   if(arrEnergy[i].isActive==true)
-                        arrEnergy[i].Emove();
+                    for(int i=0; i<MAX_Eggs; i++)
+                    {   if(arrEnergy[i].isActive==true)
+                            arrEnergy[i].Emove();
+                        
+                          //check collision with waterfall
+                        if(checkCollision(arrEnergy[i].mCollider, wall))
+                            arrEnergy[i].mPosY=SCREEN_HEIGHT+10;
+                        
+                           //check collision with yar
+                        if(checkCollision(arrEnergy[i].mCollider, yar1.mCollider))
+                            {
+                            arrEnergy[i].mPosY=SCREEN_HEIGHT+10;
+                            arrEnergy[i].GotYar=true;
+                            }
                     
-                      //check collision with waterfall
-                    if(checkCollision(arrEnergy[i].mCollider, wall))
-                        arrEnergy[i].mPosY=SCREEN_HEIGHT+10;
-                    
-                       //check collision with yar
-                    if(checkCollision(arrEnergy[i].mCollider, yar1.mCollider))
-                        {
-                        arrEnergy[i].mPosY=SCREEN_HEIGHT+10;
-                        arrEnergy[i].GotYar=true;
-                        }
-                
-                }
+                    }
                 
                 
                 
@@ -556,50 +561,56 @@ int main( int argc, char* args[] )
 
 
                    {
+                       monster.move();
+                       monster.random_move( );
+                       
+                       /*
+                       enemyBullet.mPosX = monster.mPosX + 25;
+                       enemyBullet.mPosY= monster.mPosY ;
+                        */
+                       
+                    enemyBullet.isActive = true;
+
+                       /*
+                       if ( rand()%10 < 1){
+                           enemyBullet.isActive = true;
+                       };
+
+                       */
+                       
+                    //update game objects
+                       
+                   srand( static_cast<unsigned int>(time(NULL)));
+                       
+                   if ( enemyBullet.mPosX < 0 && rand()%10< 1 )
+                   {
+                       enemyBullet.mPosY=monster.mPosY;
+                       enemyBullet.mPosX=monster.mPosX;
+                   }
                        
                     
-                    if (enemyBullet.isActive == false)
-                    {
-                        enemyBullet.mPosX = monster.mPosX + 25;
-                        enemyBullet.mPosY= monster.mPosY ;
-                        c=rand()%10;
-                        if ( c < 2)
-                        enemyBullet.isActive = true;
-                        //break;
-                    }
-                    
-                    //update game objects
-                    
-                    if (enemyBullet.isActive == true)
+                    if ( enemyBullet.isActive == true)
                         
                     {
                         
                         
-            
-                        enemyBullet.mPosX-= enemyBullet.EnemeyBullet_VEL/5;
+                        enemyBullet.mPosX -= enemyBullet.EnemeyBullet_VEL;
+                        
+                        
                         
                         //check collision between Yar and Enemeybullet
                         
                        
-                            
+                    if(checkCollision(yar1.mCollider, enemyBullet.mCollider))
                         
-                        if(checkCollision(yar1.mCollider, enemyBullet.mCollider))
-                            
-                        {
-                            
-                            yar1.mPosX-= SCREEN_HEIGHT+10;
-                            yar1.isActive=false;
-                            
-                        }
+                    {
+                        
+                        yar1.mPosX-= SCREEN_HEIGHT+10;
+                        yar1.isActive=false;
+                        
+                    }
 
-                        
-                       
-                        if (enemyBullet.mPosX < 0)
-                        {
-                            
-                            enemyBullet.isActive = false;
-                        
-                        }
+
                         
                     }
                     

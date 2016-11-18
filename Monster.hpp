@@ -25,7 +25,7 @@ public:
     static const int Monster_HEIGHT = 20;
     
     //Maximum axis velocity of the Monster
-    static const int Monster_VEL = 0;
+    static const int Monster_VEL = 5;
     
     //Initializes the variables
     Monster(int,int);
@@ -47,7 +47,8 @@ public:
     
     void close();
     
-    //private:
+    void random_move( );
+    
     //The X and Y offsets of the Monster
     int mPosX, mPosY;
     

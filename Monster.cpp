@@ -7,6 +7,8 @@
 //
 
 #include "Monster.hpp"
+#include <iostream>
+
 
 LTexture gMonsterTexture;
 
@@ -24,7 +26,7 @@ Monster::Monster(int x, int y)
     
     //Initialize the velocity
     mVelX = 0;
-    mVelY = 0;
+    mVelY = 1;
 }
 
 
@@ -60,11 +62,14 @@ void Monster::handleEvent( SDL_Event& e )
 
 void Monster::move( )
 {
-    //Move the Monster left or right
+    /*
+     
+     /Move the Monster left or right
     mPosX += mVelX;
     mCollider.x = mPosX;
     
-    //If the Monster collided or went too far to the left or right
+
+     /If the Monster collided or went too far to the left or right
     if( ( mPosX < 0 ) || ( mPosX + Monster_WIDTH > SCREEN_WIDTH ))
     {
         //Move back
@@ -72,17 +77,34 @@ void Monster::move( )
         mCollider.x = mPosX;
     }
     
+    
     //Move the Monster up or down
     mPosY += mVelY;
     mCollider.y = mPosY;
+     
+     */
+    
+    mCollider.y = mPosY;
+    
+    //std::cout<<mPosY;
     
     //If the Monster collided or went too far up or down
     if( ( mPosY < 0 ) || ( mPosY + Monster_HEIGHT > SCREEN_HEIGHT ))
     {
         //Move back
-        mPosY -= mVelY;
+        //mPosY -= mVelY;
+        
+        mVelY = - mVelY;
+        
         mCollider.y = mPosY;
     }
+}
+
+void Monster::random_move( ){
+    
+    mPosY -= ((rand()%10 - 5 ) * mVelY ) ;
+    mCollider.y =  mPosY;
+    
 }
 
 void Monster::render()

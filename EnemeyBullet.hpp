@@ -25,7 +25,7 @@ public:
     static const int EnemeyBullet_HEIGHT = 20;
     
     //Maximum axis velocity of the EnemeyBullet
-    static const int EnemeyBullet_VEL = 10;
+    static const int EnemeyBullet_VEL = 2;
     
     //Initializes the variables
     EnemeyBullet( int , int);

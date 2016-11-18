@@ -63,7 +63,7 @@ void Energy::move( )
 
 void Energy::Emove( )
 {
-mPosX -= (rand() %10)/5;
+mPosX -= (3+rand()%3) ;
 mCollider.x =  mPosX;
 }
 
