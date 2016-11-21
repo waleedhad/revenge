@@ -98,10 +98,10 @@ void Egg::random_move( ){
     
     if ( t > 2*3.145){t=0;}
     t +=0.03;
-    int cy=240;
-    int cx=600;
-        mPosX = 200*cos(t) + cx;
-        mPosY = 200*sin(t) + cy;
+    int cy=SCREEN_HEIGHT/2;
+    int cx=SCREEN_WIDTH/2 + 500;
+        mPosX = 250*cos(t) + cx;
+        mPosY = 250*sin(t) + cy;
     
     mCollider.y =  mPosY;
     mCollider.x =  mPosX;

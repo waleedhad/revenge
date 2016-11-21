@@ -13,16 +13,17 @@
 		6402088F1DDDA97600BCA553 /* EnemeyBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6402088D1DDDA97600BCA553 /* EnemeyBullet.cpp */; };
 		640208941DDF032900BCA553 /* Cannon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640208901DDF032900BCA553 /* Cannon.cpp */; };
 		640208951DDF032900BCA553 /* Monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640208921DDF032900BCA553 /* Monster.cpp */; };
+		640208A71DE30FB800BCA553 /* Bmonster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640208A51DE30FB800BCA553 /* Bmonster.cpp */; };
+		640208AB1DE3125200BCA553 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640208AA1DE3125200BCA553 /* main.cpp */; };
 		7E33B1D41DD8CE7F00927736 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E33B1D21DD8CE7F00927736 /* SDL2_image.framework */; };
 		7E33B1D51DD8CE7F00927736 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E33B1D31DD8CE7F00927736 /* SDL2.framework */; };
-		7E33B1DD1DD8E66700927736 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E33B1DB1DD8D50900927736 /* main.cpp */; };
+		7E33B1DD1DD8E66700927736 /* Megg.png in Sources */ = {isa = PBXBuildFile; fileRef = 7E33B1DB1DD8D50900927736 /* Megg.png */; };
 		7E4D96D71DD9A29400523CAD /* Yar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4D96D51DD9A29400523CAD /* Yar.cpp */; };
 		7E4D96DB1DD9C20500523CAD /* Egg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4D96D81DD9A2B800523CAD /* Egg.cpp */; };
 		7ECC81AE1DDF126300A80746 /* Bullet.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECC81A71DDF111100A80746 /* Bullet.png */; };
 		7ECC81AF1DDF126300A80746 /* cannon.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECC81A81DDF111100A80746 /* cannon.png */; };
 		7ECC81B01DDF126300A80746 /* Egg.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECC81A91DDF111100A80746 /* Egg.png */; };
 		7ECC81B11DDF126300A80746 /* Energy.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECC81AA1DDF111100A80746 /* Energy.png */; };
-		7ECC81B21DDF126300A80746 /* Megg.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECC81AB1DDF111100A80746 /* Megg.png */; };
 		7ECC81B31DDF126300A80746 /* mon.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECC81AC1DDF111100A80746 /* mon.png */; };
 		7ECC81B41DDF126300A80746 /* Yar.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECC81AD1DDF111100A80746 /* Yar.png */; };
 /* End PBXBuildFile section */
@@ -38,7 +39,6 @@
 				7ECC81AF1DDF126300A80746 /* cannon.png in CopyFiles */,
 				7ECC81B01DDF126300A80746 /* Egg.png in CopyFiles */,
 				7ECC81B11DDF126300A80746 /* Energy.png in CopyFiles */,
-				7ECC81B21DDF126300A80746 /* Megg.png in CopyFiles */,
 				7ECC81B31DDF126300A80746 /* mon.png in CopyFiles */,
 				7ECC81B41DDF126300A80746 /* Yar.png in CopyFiles */,
 			);
@@ -58,10 +58,13 @@
 		640208911DDF032900BCA553 /* Cannon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cannon.hpp; sourceTree = SOURCE_ROOT; };
 		640208921DDF032900BCA553 /* Monster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Monster.cpp; sourceTree = SOURCE_ROOT; };
 		640208931DDF032900BCA553 /* Monster.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Monster.hpp; sourceTree = SOURCE_ROOT; };
+		640208A51DE30FB800BCA553 /* Bmonster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bmonster.cpp; sourceTree = SOURCE_ROOT; };
+		640208A61DE30FB800BCA553 /* Bmonster.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bmonster.hpp; sourceTree = SOURCE_ROOT; };
+		640208AA1DE3125200BCA553 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
 		7E33B1D21DD8CE7F00927736 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		7E33B1D31DD8CE7F00927736 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		7E33B1D61DD8CEDE00927736 /* LTexture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LTexture.hpp; sourceTree = SOURCE_ROOT; };
-		7E33B1DB1DD8D50900927736 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
+		7E33B1DB1DD8D50900927736 /* Megg.png */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = image.png; path = Megg.png; sourceTree = SOURCE_ROOT; };
 		7E4D96D51DD9A29400523CAD /* Yar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Yar.cpp; sourceTree = SOURCE_ROOT; };
 		7E4D96D61DD9A29400523CAD /* Yar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Yar.hpp; sourceTree = SOURCE_ROOT; };
 		7E4D96D81DD9A2B800523CAD /* Egg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Egg.cpp; sourceTree = SOURCE_ROOT; };
@@ -71,7 +74,6 @@
 		7ECC81A81DDF111100A80746 /* cannon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cannon.png; sourceTree = "<group>"; };
 		7ECC81A91DDF111100A80746 /* Egg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Egg.png; sourceTree = "<group>"; };
 		7ECC81AA1DDF111100A80746 /* Energy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Energy.png; sourceTree = "<group>"; };
-		7ECC81AB1DDF111100A80746 /* Megg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Megg.png; sourceTree = "<group>"; };
 		7ECC81AC1DDF111100A80746 /* mon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mon.png; sourceTree = "<group>"; };
 		7ECC81AD1DDF111100A80746 /* Yar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,7 +122,7 @@
 		7E7C0B021DD35E9A00B92685 /* revenge */ = {
 			isa = PBXGroup;
 			children = (
-				7E33B1DB1DD8D50900927736 /* main.cpp */,
+				640208AA1DE3125200BCA553 /* main.cpp */,
 				640208901DDF032900BCA553 /* Cannon.cpp */,
 				640208911DDF032900BCA553 /* Cannon.hpp */,
 				640208921DDF032900BCA553 /* Monster.cpp */,
@@ -138,11 +140,13 @@
 				6402088E1DDDA97600BCA553 /* EnemeyBullet.hpp */,
 				7ECC81A71DDF111100A80746 /* Bullet.png */,
 				7ECC81A81DDF111100A80746 /* cannon.png */,
+				7E33B1DB1DD8D50900927736 /* Megg.png */,
 				7ECC81A91DDF111100A80746 /* Egg.png */,
 				7ECC81AA1DDF111100A80746 /* Energy.png */,
-				7ECC81AB1DDF111100A80746 /* Megg.png */,
 				7ECC81AC1DDF111100A80746 /* mon.png */,
 				7ECC81AD1DDF111100A80746 /* Yar.png */,
+				640208A51DE30FB800BCA553 /* Bmonster.cpp */,
+				640208A61DE30FB800BCA553 /* Bmonster.hpp */,
 			);
 			path = revenge;
 			sourceTree = "<group>";
@@ -211,7 +215,9 @@
 				6402085C1DDCA27D00BCA553 /* Energy.cpp in Sources */,
 				640208951DDF032900BCA553 /* Monster.cpp in Sources */,
 				640208941DDF032900BCA553 /* Cannon.cpp in Sources */,
-				7E33B1DD1DD8E66700927736 /* main.cpp in Sources */,
+				7E33B1DD1DD8E66700927736 /* Megg.png in Sources */,
+				640208A71DE30FB800BCA553 /* Bmonster.cpp in Sources */,
+				640208AB1DE3125200BCA553 /* main.cpp in Sources */,
 				640208271DDA42A600BCA553 /* bullet.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
