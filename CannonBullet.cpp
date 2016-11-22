@@ -49,17 +49,33 @@ CannonBullet::CannonBullet()
 }
 
 
-void CannonBullet::move( int YarYpos )
+void CannonBullet::move( )
 {
-    //Move the Cannon up or down
-    mPosY=YarYpos+10;
-    mCollider.y = mPosY;
-    
+    //Move the EnemeyBullet left or right
     mPosX += mVelX;
     mCollider.x = mPosX;
-
     
+    //If the EnemeyBullet collided or went too far to the left or right
+    if( ( mPosX < 0 ) || ( mPosX + CannonBullet_WIDTH > SCREEN_WIDTH ) )
+    {
+        //Move back
+        mPosX -= mVelX;
+        mCollider.x = mPosX;
+    }
+    
+    //Move the EnemeyBullet up or down
+    mPosY += mVelY;
+    mCollider.y = mPosY;
+    
+    //If the EnemeyBullet collided or went too far up or down
+    if( ( mPosY < 0 ) || ( mPosY + CannonBullet_HEIGHT > SCREEN_HEIGHT ))
+    {
+        //Move back
+        mPosY -= mVelY;
+        mCollider.y = mPosY;
+    }
 }
+
 
 void CannonBullet::render()
 {

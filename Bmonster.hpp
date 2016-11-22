@@ -23,7 +23,7 @@ class Bmonster
 {
 public:
     //The dimensions of the Bmonster
-    static const int Bmonster_WIDTH = 15;
+    static const int Bmonster_WIDTH = 20;
     static const int Bmonster_HEIGHT = 20;
     
     //Maximum axis velocity of the Bmonster
