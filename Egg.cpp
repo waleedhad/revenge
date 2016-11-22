@@ -93,13 +93,13 @@ void Egg::set_phase(double phase){
     t=phase;
 }
 
-void Egg::random_move( ){
+void Egg::random_move( double circle_velocity, int x , int y  ){
     
     
     if ( t > 2*3.145){t=0;}
-    t +=0.03;
-    int cy=SCREEN_HEIGHT/2;
-    int cx=SCREEN_WIDTH/2 + 500;
+    t += circle_velocity;
+    int cy= y; // (SCREEN_HEIGHT/2);
+    int cx= x; //(SCREEN_WIDTH/2 + 500);
         mPosX = 250*cos(t) + cx;
         mPosY = 250*sin(t) + cy;
     

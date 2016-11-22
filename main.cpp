@@ -327,8 +327,7 @@ int main( int argc, char* args[] )
     
     
     // count no of collected energy;
-    int count=0;
-    bool full;
+    int count=15;
     //time to randomlly move
    srand( static_cast<unsigned int>(time(NULL)));
     
@@ -356,6 +355,12 @@ int main( int argc, char* args[] )
     
     //make monester status true
     monster.isActive=true;
+    
+    monster.mPosX= SCREEN_WIDTH-120;
+    monster.mPosY= SCREEN_HEIGHT/2;
+    monster.mCollider.x= monster.mPosX;
+    monster.mCollider.y= monster.mPosY;
+
 
     
     //make all eggs false
@@ -481,7 +486,7 @@ int main( int argc, char* args[] )
                    
                 {   //arrEggs[i].move();
                     arrBM[i].move();
-                    //arrEggs[i].random_move( );
+                    arrEggs[i].random_move( 0, (SCREEN_WIDTH/2 + 500), (SCREEN_HEIGHT/2));
                     
                     //if(arrBM[i].isActive==true){arrBM[i].random_move();};
                     if(arrBM[i].isActive==true){arrBM[i].all_random_move( );};
@@ -576,8 +581,9 @@ int main( int argc, char* args[] )
                         //check collision with baby monster
                         if(checkCollision(arrBM[i].mCollider, yar1.mCollider))
                         {
-                            printf("yar fall");
+                            printf(" |YAR DIED | LEVEL 1");
                             yar1.mPosY=SCREEN_HEIGHT+10;
+                            exit(1);
                         }
                         
                         
@@ -667,19 +673,16 @@ int main( int argc, char* args[] )
                         
                         enemyBullet.mPosX -= enemyBullet.EnemeyBullet_VEL;
                         
-                        
-                        
                         //check collision between Yar and Enemeybullet
                         
-                       
                     if(checkCollision(yar1.mCollider, enemyBullet.mCollider))
                         
                     {
                         
                         yar1.mPosX-= SCREEN_HEIGHT+10;
                         yar1.isActive=false;
-                         printf("hhhhhhh");
-                        //break;
+                        printf(" |YAR DIED| ");
+                        exit(1);
                        
                     }
 
@@ -708,10 +711,11 @@ int main( int argc, char* args[] )
                 //if(count>=5)
                 {
                    // if(checkCollision(yar1.mCollider, cannon.mCollider) && cannonBullet.isActive==false  )
-                    cannonBullet.isActive = true;
-                    
                     cannonBullet.mPosY=cannon.mPosY;
                     cannonBullet.mPosX=cannon.mPosX;
+                    cannonBullet.isActive = true;
+                    
+                    
                 }
                 
                 
@@ -723,6 +727,7 @@ int main( int argc, char* args[] )
                     
                     
                     cannonBullet.mPosX += 10*cannonBullet.CannonBullet_VEL;
+                    cannonBullet.mCollider.x=cannonBullet.mPosX ;
                     
                   
                     
@@ -734,9 +739,10 @@ int main( int argc, char* args[] )
                     if(checkCollision(cannonBullet.mCollider, monster.mCollider))
                         
                     {
-                        monster.mPosY=SCREEN_HEIGHT+10;
+                        //monster.mPosY=SCREEN_HEIGHT+10;
                         monster.isActive=false;
-                        //printf("ccccccc");
+                        cannonBullet.isActive=false;
+                        printf(" | Monster DIED |  --> NEXT LEVEL 2  ");
                         break;
                         
                     }
@@ -747,7 +753,6 @@ int main( int argc, char* args[] )
                         cannonBullet.isActive=false;
                         cannon.isActive=false;
                         count-=CannonFull;
-                        
                     }
                     
                     
@@ -771,6 +776,36 @@ int main( int argc, char* args[] )
                                                     //LEVEL 2 \\
             /////////////////////////////////////////////////////////////////////////////////////////////////////
             
+            quit=false;
+            
+            monster.mPosX= SCREEN_WIDTH-120;
+            monster.mPosY= SCREEN_HEIGHT/2;
+            monster.mCollider.x= monster.mPosX;
+            monster.mCollider.y= monster.mPosY;
+
+            
+            
+            
+
+            //make all bullets false
+            bullet1.isActive=false;
+            enemyBullet.isActive=false;
+            cannonBullet.isActive=false;
+            
+            //make monester status true
+            monster.isActive=true;
+            
+            
+            //make all eggs false
+            for (int i=0; i<MAX_Eggs; i++ ){
+                arrEggs[i].isActive=false;
+                arrEggs[i].set_phase(i * 2*3.14/(MAX_Eggs));
+                
+                arrBM[i].set_phase( arrEggs[i].t);
+                
+                arrBM[i].isActive=false;
+            }
+
             
             while( !quit )
             {
@@ -823,7 +858,7 @@ int main( int argc, char* args[] )
                     
                 {   arrEggs[i].move();
                     arrBM[i].move();
-                    arrEggs[i].random_move( );
+                    arrEggs[i].random_move( 0.02, (SCREEN_WIDTH/2 + 500), (SCREEN_HEIGHT/2) );
                     
                     //if(arrBM[i].isActive==true){arrBM[i].random_move();};
                     if(arrBM[i].isActive==true){arrBM[i].all_random_move( );};
@@ -910,7 +945,7 @@ int main( int argc, char* args[] )
                     //check collision with baby monster
                     if(checkCollision(arrBM[i].mCollider, bullet1.mCollider))
                     {
-                        printf("baby fall");
+                        printf(" | BABY MONSTER DIED | Level 2 ");
                         arrBM[i].mPosY=SCREEN_HEIGHT+10;
                         arrBM[i].isActive=false;
                     }
@@ -918,8 +953,9 @@ int main( int argc, char* args[] )
                     //check collision with baby monster
                     if(checkCollision(arrBM[i].mCollider, yar1.mCollider))
                     {
-                        printf("yar fall");
+                        printf(" | YAR DIED   | LEVEL 2 ");
                         yar1.mPosY=SCREEN_HEIGHT+10;
+                        exit(2);
                     }
                     
                     
@@ -958,7 +994,7 @@ int main( int argc, char* args[] )
                     
                 {
                     monster.move();
-                    monster.random_move( );
+                    //monster.random_move( );
                     
                     /*
                      enemyBullet.mPosX = monster.mPosX + 25;
@@ -1019,8 +1055,8 @@ int main( int argc, char* args[] )
                             
                             yar1.mPosX-= SCREEN_HEIGHT+10;
                             yar1.isActive=false;
-                            printf("hhhhhhh");
-                            //break;
+                            printf(" | YAR DIED | LEVEL 2 ");
+                            exit(2);
                             
                         }
                         
@@ -1049,10 +1085,11 @@ int main( int argc, char* args[] )
                     //if(count>=5)
                 {
                     // if(checkCollision(yar1.mCollider, cannon.mCollider) && cannonBullet.isActive==false  )
-                    cannonBullet.isActive = true;
-                    
                     cannonBullet.mPosY=cannon.mPosY;
                     cannonBullet.mPosX=cannon.mPosX;
+                    cannonBullet.isActive = true;
+                    
+                    
                 }
                 
                 
@@ -1064,6 +1101,7 @@ int main( int argc, char* args[] )
                     
                     
                     cannonBullet.mPosX += 10*cannonBullet.CannonBullet_VEL;
+                    cannonBullet.mCollider.x=cannonBullet.mPosX;
                     
                     
                     
@@ -1077,7 +1115,8 @@ int main( int argc, char* args[] )
                     {
                         monster.mPosY=SCREEN_HEIGHT+10;
                         monster.isActive=false;
-                        //printf("ccccccc");
+                        cannonBullet.isActive=false;
+                        printf(" | MONSTER DIED | --> LEVEL 3 ");
                         break;
                         
                     }
@@ -1110,7 +1149,36 @@ int main( int argc, char* args[] )
             /////////////////////////////////////////////////////////////////////////////////////////////////////
                                                         //LEVEL 3 \\
             /////////////////////////////////////////////////////////////////////////////////////////////////////
+            quit=false;
+            
+            
+            
+            monster.mPosX= SCREEN_WIDTH-120;
+            monster.mPosY= SCREEN_HEIGHT/2;
+            monster.mCollider.x= monster.mPosX;
+            monster.mCollider.y= monster.mPosY;
 
+            
+            //make all bullets false
+            bullet1.isActive=false;
+            enemyBullet.isActive=false;
+            cannonBullet.isActive=false;
+            
+            //make monester status true
+            monster.isActive=true;
+            
+            
+            //make all eggs false
+            for (int i=0; i<MAX_Eggs; i++ ){
+                arrEggs[i].isActive=false;
+                arrEggs[i].set_phase(i * 2*3.14/(MAX_Eggs));
+                
+                arrBM[i].set_phase( arrEggs[i].t);
+                
+                arrBM[i].isActive=false;
+            }
+
+            
             while( !quit )
             {
                 
@@ -1162,7 +1230,7 @@ int main( int argc, char* args[] )
                     
                 {   arrEggs[i].move();
                     arrBM[i].move();
-                    arrEggs[i].random_move( );
+                    arrEggs[i].random_move( 0, (SCREEN_WIDTH/2+500), monster.mPosY );
                     
                     //if(arrBM[i].isActive==true){arrBM[i].random_move();};
                     if(arrBM[i].isActive==true){arrBM[i].all_random_move( );};
@@ -1171,7 +1239,6 @@ int main( int argc, char* args[] )
                     if(arrEnergy[i].isActive==true)arrEnergy[i].render();
                     if(arrEggs[i].isActive==false){arrEggs[i].render();};
                     if(arrBM[i].isActive==true){arrBM[i].render();};
-                    
                     
                 }
                 
@@ -1249,7 +1316,6 @@ int main( int argc, char* args[] )
                     //check collision with baby monster
                     if(checkCollision(arrBM[i].mCollider, bullet1.mCollider))
                     {
-                        printf("baby fall");
                         arrBM[i].mPosY=SCREEN_HEIGHT+10;
                         arrBM[i].isActive=false;
                     }
@@ -1257,8 +1323,9 @@ int main( int argc, char* args[] )
                     //check collision with baby monster
                     if(checkCollision(arrBM[i].mCollider, yar1.mCollider))
                     {
-                        printf("yar fall");
+                        printf(" |YAR DIED |");
                         yar1.mPosY=SCREEN_HEIGHT+10;
+                        exit(3);
                     }
                     
                     
@@ -1358,8 +1425,8 @@ int main( int argc, char* args[] )
                             
                             yar1.mPosX-= SCREEN_HEIGHT+10;
                             yar1.isActive=false;
-                            printf("hhhhhhh");
-                            //break;
+                            printf(" | YAR DIED  | LEVEL 3 ");
+                            exit(3);
                             
                         }
                         
@@ -1388,10 +1455,11 @@ int main( int argc, char* args[] )
                     //if(count>=5)
                 {
                     // if(checkCollision(yar1.mCollider, cannon.mCollider) && cannonBullet.isActive==false  )
-                    cannonBullet.isActive = true;
-                    
                     cannonBullet.mPosY=cannon.mPosY;
                     cannonBullet.mPosX=cannon.mPosX;
+                    cannonBullet.isActive = true;
+                    
+                    
                 }
                 
                 
@@ -1403,6 +1471,7 @@ int main( int argc, char* args[] )
                     
                     
                     cannonBullet.mPosX += 10*cannonBullet.CannonBullet_VEL;
+                    cannonBullet.mCollider.x=cannonBullet.mPosX ;
                     
                     
                     
@@ -1416,7 +1485,7 @@ int main( int argc, char* args[] )
                     {
                         monster.mPosY=SCREEN_HEIGHT+10;
                         monster.isActive=false;
-                        //printf("ccccccc");
+                        printf(" |MONSTER DIED | --> LEVEL 4 ");
                         break;
                         
                     }
@@ -1450,7 +1519,34 @@ int main( int argc, char* args[] )
             /////////////////////////////////////////////////////////////////////////////////////////////////////
                                                     //LEVEL 4 \\
             /////////////////////////////////////////////////////////////////////////////////////////////////////
+            quit=false;
             
+            
+            monster.mPosX= SCREEN_WIDTH-120;
+            monster.mPosY= SCREEN_HEIGHT/2;
+            monster.mCollider.x= monster.mPosX;
+            monster.mCollider.y= monster.mPosY;
+
+            
+            //make all bullets false
+            bullet1.isActive=false;
+            enemyBullet.isActive=false;
+            cannonBullet.isActive=false;
+            
+            //make monester status true
+            monster.isActive=true;
+            
+            
+            //make all eggs false
+            for (int i=0; i<MAX_Eggs; i++ ){
+                arrEggs[i].isActive=false;
+                arrEggs[i].set_phase(i * 2*3.14/(MAX_Eggs));
+                
+                arrBM[i].set_phase( arrEggs[i].t);
+                
+                arrBM[i].isActive=false;
+            }
+
             
             while( !quit )
             {
@@ -1503,7 +1599,7 @@ int main( int argc, char* args[] )
                     
                 {   arrEggs[i].move();
                     arrBM[i].move();
-                    arrEggs[i].random_move( );
+                    arrEggs[i].random_move( 0.03, (SCREEN_WIDTH/2+500), monster.mPosY );
                     
                     //if(arrBM[i].isActive==true){arrBM[i].random_move();};
                     if(arrBM[i].isActive==true){arrBM[i].all_random_move( );};
@@ -1598,8 +1694,9 @@ int main( int argc, char* args[] )
                     //check collision with baby monster
                     if(checkCollision(arrBM[i].mCollider, yar1.mCollider))
                     {
-                        printf("yar fall");
+                        printf(" |YAR DIED | LEVEL 4 ");
                         yar1.mPosY=SCREEN_HEIGHT+10;
+                        exit(4);
                     }
                     
                     
@@ -1699,8 +1796,8 @@ int main( int argc, char* args[] )
                             
                             yar1.mPosX-= SCREEN_HEIGHT+10;
                             yar1.isActive=false;
-                            printf("hhhhhhh");
-                            //break;
+                            printf(" |YAR DIED | LEVEL 4 ");
+                            exit(4);
                             
                         }
                         
@@ -1729,10 +1826,11 @@ int main( int argc, char* args[] )
                     //if(count>=5)
                 {
                     // if(checkCollision(yar1.mCollider, cannon.mCollider) && cannonBullet.isActive==false  )
-                    cannonBullet.isActive = true;
-                    
                     cannonBullet.mPosY=cannon.mPosY;
                     cannonBullet.mPosX=cannon.mPosX;
+                    cannonBullet.isActive = true;
+                    
+                    
                 }
                 
                 
@@ -1744,6 +1842,7 @@ int main( int argc, char* args[] )
                     
                     
                     cannonBullet.mPosX += 10*cannonBullet.CannonBullet_VEL;
+                    cannonBullet.mCollider.x=cannonBullet.mPosX ;
                     
                     
                     
@@ -1757,7 +1856,7 @@ int main( int argc, char* args[] )
                     {
                         monster.mPosY=SCREEN_HEIGHT+10;
                         monster.isActive=false;
-                        //printf("ccccccc");
+                        printf(" | MONSTER DIED | ---> YOU WON ! ");
                         break;
                         
                     }

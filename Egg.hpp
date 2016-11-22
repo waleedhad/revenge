@@ -33,6 +33,8 @@ public:
     //status
     bool isActive;
     
+    void random_move( double circle_velocity, int x, int y );
+    
     //Takes key presses and adjusts the Egg's velocity
     void handleEvent( SDL_Event& e );
     
@@ -43,9 +45,7 @@ public:
     void render();
     // load egg pic
     bool loadMedia();
-    
-    void random_move();
- 
+     
     void close();
     
 //private:

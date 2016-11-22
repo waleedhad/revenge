@@ -89,7 +89,7 @@ void Monster::move( )
     //std::cout<<mPosY;
     
     //If the Monster collided or went too far up or down
-    if( ( mPosY < 0 ) || ( mPosY + Monster_HEIGHT > SCREEN_HEIGHT ))
+    if( ( mPosY < 250 ) || ( mPosY + Monster_HEIGHT > SCREEN_HEIGHT-250 ))
     {
         //Move back
         //mPosY -= mVelY;
