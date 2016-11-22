@@ -30,6 +30,9 @@ public:
     
     //statuse
     bool isActive;
+    
+    
+    int GotYar=0;
     //Takes key presses and adjusts the Yar's velocity
     void handleEvent( SDL_Event& e );
     

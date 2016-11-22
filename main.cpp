@@ -24,6 +24,7 @@
 #include "Cannon.hpp"
 #include "EnemeyBullet.hpp"
 #include "Bmonster.hpp"
+#include "CannonBullet.hpp"
 #include "LTexture.hpp"
 
 //const int MAX_BULLETS = 1;
@@ -321,7 +322,7 @@ int main( int argc, char* args[] )
     
     
     // count no of collected energy;
-    int count=0;
+    int count=5;
     
     //time to randomlly move
    srand( static_cast<unsigned int>(time(NULL)));
@@ -339,13 +340,14 @@ int main( int argc, char* args[] )
     Bmonster bmonster1(egg1.mPosX , egg1.mPosY);
 
 
-    
+    CannonBullet cannonBullet;
     Energy energy1;
     Energy arrEnergy[MAX_Eggs];
     
     //make all bullets false
     bullet1.isActive=false;
     enemyBullet.isActive=false;
+    cannonBullet.isActive=false;
     
     //make monester status true
     monster.isActive=true;
@@ -371,7 +373,7 @@ int main( int argc, char* args[] )
     else
     {
         //Load media
-        if( !yar1.loadMedia() || !egg1.loadMedia() || !bullet1.loadMedia() || !energy1.loadMedia() || !cannon.loadMedia() || !monster.loadMedia() || !enemyBullet.loadMedia() || !bmonster1.loadMedia())
+        if( !yar1.loadMedia() || !egg1.loadMedia() || !bullet1.loadMedia() || !energy1.loadMedia() || !cannon.loadMedia() || !monster.loadMedia() || !enemyBullet.loadMedia() || !bmonster1.loadMedia() || !cannonBullet.loadMedia())
         {
             printf( "Failed to load media!\n" );
         }
@@ -438,6 +440,7 @@ int main( int argc, char* args[] )
                     
                     //Handle input for the objects
                     yar1.handleEvent( e );
+                    //cannonBullet.Emove(e);
                     //bullet1.handleEvent( e );
                 }
                 
@@ -445,13 +448,15 @@ int main( int argc, char* args[] )
                 yar1.move( );
                 bullet1.move();
                 enemyBullet.move();
+                //cannonBullet.move();
                 energy1.move();
                 //egg1.move();
                 cannon.move(yar1.mPosY);
+                 cannonBullet.move(cannon.mPosY);
                 
                 //Set the cannon
                 
-
+                
                 
                 //Clear screen
                 SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
@@ -482,8 +487,10 @@ int main( int argc, char* args[] )
                 
              
                 yar1.render();
+                cannonBullet.render();
                 cannon.render();
                 monster.render();
+                
                 //bmonster1.render();
                 //egg1.render();
                
@@ -548,7 +555,7 @@ int main( int argc, char* args[] )
                 
                     for(int i=0; i<MAX_Eggs; i++)
                     {   if(arrEnergy[i].isActive==true)
-                            arrEnergy[i].Emove();
+                    {  arrEnergy[i].Emove();
                         
                           //check collision with waterfall
                         if(checkCollision(arrEnergy[i].mCollider, wall))
@@ -559,14 +566,33 @@ int main( int argc, char* args[] )
                             {
                             arrEnergy[i].mPosY=SCREEN_HEIGHT+10;
                             arrEnergy[i].GotYar=true;
+                                arrEnergy[i].isActive=false;
+                                count++;
+                               
                                 
                             }
                     
                     }
-                
-                
-                
                     
+                    }
+                
+                
+                if( currentKeyStates[ SDL_SCANCODE_S] )
+                {
+                    
+                    cannonBullet.mVelX += cannonBullet.CannonBullet_VEL;
+                        
+                        
+                        
+                        if(checkCollision(cannonBullet.mCollider, monster.mCollider))
+                            
+                            monster.mPosY=SCREEN_HEIGHT+10;
+                    
+                    }
+                    
+                    
+                    
+                
                     //printf(" %d  hello", rand()%10);
                     //lastTime = SDL_GetTicks();
                     //printf("%u,      %u \n",SDL_GetTicks() ,lastTime);
@@ -639,7 +665,7 @@ int main( int argc, char* args[] )
                         yar1.mPosX-= SCREEN_HEIGHT+10;
                         yar1.isActive=false;
                          printf("hhhhhhh");
-                        break;
+                        //break;
                        
                     }
 
@@ -657,16 +683,20 @@ int main( int argc, char* args[] )
                    
                 }
                 
-                
+              
+              
+              
+               
+
                 //Update screen
                 SDL_RenderPresent( gRenderer );
             }// main game loop
             
             //count no of collected energy;
-            for(int i=0; i<MAX_Eggs; i++)
-            {   if(arrEnergy[i].GotYar==true)
-                count++;
-            } printf("here %d",count);
+           
+            
+            
+            
             
             
  ////////////////////////////////////////////////////////////////level2
@@ -701,9 +731,12 @@ int main( int argc, char* args[] )
                 yar1.move( );
                 bullet1.move();
                 enemyBullet.move();
+               
                 energy1.move();
                 //egg1.move();
                 cannon.move(yar1.mPosY);
+                
+                
                 
                 //Set the cannon
                 
@@ -805,6 +838,7 @@ int main( int argc, char* args[] )
                     {
                         arrEnergy[i].mPosY=SCREEN_HEIGHT+10;
                         arrEnergy[i].GotYar=true;
+                        arrEnergy[i].isActive=false;
                     }
                     
                 }

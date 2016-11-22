@@ -15,6 +15,7 @@
 		640208951DDF032900BCA553 /* Monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640208921DDF032900BCA553 /* Monster.cpp */; };
 		640208A71DE30FB800BCA553 /* Bmonster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640208A51DE30FB800BCA553 /* Bmonster.cpp */; };
 		640208AB1DE3125200BCA553 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640208AA1DE3125200BCA553 /* main.cpp */; };
+		640208AE1DE3869000BCA553 /* CannonBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 640208AC1DE3869000BCA553 /* CannonBullet.cpp */; };
 		7E33B1D41DD8CE7F00927736 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E33B1D21DD8CE7F00927736 /* SDL2_image.framework */; };
 		7E33B1D51DD8CE7F00927736 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E33B1D31DD8CE7F00927736 /* SDL2.framework */; };
 		7E33B1DD1DD8E66700927736 /* Megg.png in Sources */ = {isa = PBXBuildFile; fileRef = 7E33B1DB1DD8D50900927736 /* Megg.png */; };
@@ -61,6 +62,8 @@
 		640208A51DE30FB800BCA553 /* Bmonster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bmonster.cpp; sourceTree = SOURCE_ROOT; };
 		640208A61DE30FB800BCA553 /* Bmonster.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bmonster.hpp; sourceTree = SOURCE_ROOT; };
 		640208AA1DE3125200BCA553 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
+		640208AC1DE3869000BCA553 /* CannonBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CannonBullet.cpp; sourceTree = SOURCE_ROOT; };
+		640208AD1DE3869000BCA553 /* CannonBullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CannonBullet.hpp; sourceTree = SOURCE_ROOT; };
 		7E33B1D21DD8CE7F00927736 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		7E33B1D31DD8CE7F00927736 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		7E33B1D61DD8CEDE00927736 /* LTexture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LTexture.hpp; sourceTree = SOURCE_ROOT; };
@@ -147,6 +150,8 @@
 				7ECC81AD1DDF111100A80746 /* Yar.png */,
 				640208A51DE30FB800BCA553 /* Bmonster.cpp */,
 				640208A61DE30FB800BCA553 /* Bmonster.hpp */,
+				640208AC1DE3869000BCA553 /* CannonBullet.cpp */,
+				640208AD1DE3869000BCA553 /* CannonBullet.hpp */,
 			);
 			path = revenge;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 				7E4D96D71DD9A29400523CAD /* Yar.cpp in Sources */,
 				6402088F1DDDA97600BCA553 /* EnemeyBullet.cpp in Sources */,
 				6402085C1DDCA27D00BCA553 /* Energy.cpp in Sources */,
+				640208AE1DE3869000BCA553 /* CannonBullet.cpp in Sources */,
 				640208951DDF032900BCA553 /* Monster.cpp in Sources */,
 				640208941DDF032900BCA553 /* Cannon.cpp in Sources */,
 				7E33B1DD1DD8E66700927736 /* Megg.png in Sources */,
