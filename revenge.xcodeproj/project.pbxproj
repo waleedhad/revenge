@@ -64,6 +64,7 @@
 		640208AA1DE3125200BCA553 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
 		640208AC1DE3869000BCA553 /* CannonBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CannonBullet.cpp; sourceTree = SOURCE_ROOT; };
 		640208AD1DE3869000BCA553 /* CannonBullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CannonBullet.hpp; sourceTree = SOURCE_ROOT; };
+		640208B11DE469EF00BCA553 /* font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = font.ttf; sourceTree = "<group>"; };
 		7E33B1D21DD8CE7F00927736 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		7E33B1D31DD8CE7F00927736 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		7E33B1D61DD8CEDE00927736 /* LTexture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LTexture.hpp; sourceTree = SOURCE_ROOT; };
@@ -147,6 +148,7 @@
 				7ECC81A91DDF111100A80746 /* Egg.png */,
 				7ECC81AA1DDF111100A80746 /* Energy.png */,
 				7ECC81AC1DDF111100A80746 /* mon.png */,
+				640208B11DE469EF00BCA553 /* font.ttf */,
 				7ECC81AD1DDF111100A80746 /* Yar.png */,
 				640208A51DE30FB800BCA553 /* Bmonster.cpp */,
 				640208A61DE30FB800BCA553 /* Bmonster.hpp */,

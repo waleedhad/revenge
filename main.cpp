@@ -42,8 +42,6 @@ const int CannonFull=5;
 const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
 
 
-
-
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
 
@@ -108,7 +106,10 @@ bool LTexture::loadFromFile( std::string path )
     return mTexture != NULL;
 }
 
+TTF_Font *gFont=NULL; //pointer to font
+
 #ifdef _SDL_TTF_H
+
 bool LTexture::loadFromRenderedText( std::string textureText, SDL_Color textColor )
 {
     //Get rid of preexisting texture
@@ -143,7 +144,51 @@ bool LTexture::loadFromRenderedText( std::string textureText, SDL_Color textColo
     //Return success
     return mTexture != NULL;
 }
+
+
+//creating text objects to be rendered by SDL True Type Font
+
+LTexture gTextTexture;
+LTexture gText_L1;
+LTexture gText_L2;
+LTexture gText_L3;
+LTexture gText_L4;
+LTexture gText_Win;
+
+
+bool loadMedia_Text(){
+
+        //Loading success flag
+        bool success = true;
+        
+        //Open the font
+        gFont = TTF_OpenFont( "font.ttf", 30 );
+        if( gFont == NULL )
+        {
+            printf( "Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError() );
+            success = false;
+        }
+        else
+        {
+            //Render text
+            SDL_Color textColor = { 0, 0, 0 };
+            if( !gTextTexture.loadFromRenderedText( "GAME OVER ! ", textColor ) || !gText_L1.loadFromRenderedText(" LEVEL 1  ", textColor )
+               || !gText_L2.loadFromRenderedText(" LEVEL 2  ", textColor ) || !gText_L3.loadFromRenderedText(" LEVEL 3  ", textColor )
+               || !gText_L4.loadFromRenderedText(" LEVEL 4  ", textColor ) || !gText_Win.loadFromRenderedText("Congrats, you won !", textColor ) )
+            {
+                printf( "Failed to render text texture!\n" );
+                success = false;
+            }
+        }
+        
+        return success;
+    
+}
+
+
+
 #endif
+
 
 void LTexture::free()
 {
@@ -207,6 +252,12 @@ bool init()
 {
     //Initialization flag
     bool success = true;
+    
+    if( TTF_Init() < 0 )
+    {
+        printf( "TTF_SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
+        success = false;
+    }
     
     //Initialize SDL
     if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
@@ -383,7 +434,7 @@ int main( int argc, char* args[] )
     else
     {
         //Load media
-        if( !yar1.loadMedia() || !egg1.loadMedia() || !bullet1.loadMedia() || !energy1.loadMedia() || !cannon.loadMedia() || !monster.loadMedia() || !enemyBullet.loadMedia() || !bmonster1.loadMedia() || !cannonBullet.loadMedia())
+        if( !yar1.loadMedia() || !egg1.loadMedia() || !bullet1.loadMedia() || !energy1.loadMedia() || !cannon.loadMedia() || !monster.loadMedia() || !enemyBullet.loadMedia() || !bmonster1.loadMedia() || !cannonBullet.loadMedia() || !loadMedia_Text())
         {
             printf( "Failed to load media!\n" );
         }
@@ -427,6 +478,16 @@ int main( int argc, char* args[] )
                 arrEnergy[i].mCollider.x = arrEnergy[i].mPosX;
                arrEnergy[i].mCollider.y = arrEnergy[i].mPosY;
             }
+            
+            //////////////////////////////////////////////////////////////////////
+            //Level 1 screen
+            
+            SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+            SDL_RenderClear( gRenderer );
+            //Render current frame
+            gText_L1.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+            SDL_RenderPresent( gRenderer );
+            SDL_Delay(2000);
             
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -583,6 +644,12 @@ int main( int argc, char* args[] )
                         {
                             printf(" |YAR DIED | LEVEL 1");
                             yar1.mPosY=SCREEN_HEIGHT+10;
+                            SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                            SDL_RenderClear( gRenderer );
+                            //Render current frame
+                            gTextTexture.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+                            SDL_RenderPresent( gRenderer );
+                            SDL_Delay(2000);
                             exit(1);
                         }
                         
@@ -682,6 +749,14 @@ int main( int argc, char* args[] )
                         yar1.mPosX-= SCREEN_HEIGHT+10;
                         yar1.isActive=false;
                         printf(" |YAR DIED| ");
+                        
+                        SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                        SDL_RenderClear( gRenderer );
+                        //Render current frame
+                        gTextTexture.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+                        SDL_RenderPresent( gRenderer );
+                        SDL_Delay(2000);
+                        
                         exit(1);
                        
                     }
@@ -743,6 +818,12 @@ int main( int argc, char* args[] )
                         monster.isActive=false;
                         cannonBullet.isActive=false;
                         printf(" | Monster DIED |  --> NEXT LEVEL 2  ");
+                        SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                        SDL_RenderClear( gRenderer );
+                        //Render current frame
+                        gText_L2.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+                        SDL_RenderPresent( gRenderer );
+                        SDL_Delay(2000);
                         break;
                         
                     }
@@ -765,7 +846,8 @@ int main( int argc, char* args[] )
                     
                 }
                 
-
+                
+                
                 //Update screen
                 SDL_RenderPresent( gRenderer );
             }// main game loop
@@ -955,6 +1037,12 @@ int main( int argc, char* args[] )
                     {
                         printf(" | YAR DIED   | LEVEL 2 ");
                         yar1.mPosY=SCREEN_HEIGHT+10;
+                        SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                        SDL_RenderClear( gRenderer );
+                        //Render current frame
+                        gTextTexture.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+                        SDL_RenderPresent( gRenderer );
+                        SDL_Delay(2000);
                         exit(2);
                     }
                     
@@ -1056,6 +1144,12 @@ int main( int argc, char* args[] )
                             yar1.mPosX-= SCREEN_HEIGHT+10;
                             yar1.isActive=false;
                             printf(" | YAR DIED | LEVEL 2 ");
+                            SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                            SDL_RenderClear( gRenderer );
+                            //Render current frame
+                            gTextTexture.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+                            SDL_RenderPresent( gRenderer );
+                            SDL_Delay(2000);
                             exit(2);
                             
                         }
@@ -1117,6 +1211,12 @@ int main( int argc, char* args[] )
                         monster.isActive=false;
                         cannonBullet.isActive=false;
                         printf(" | MONSTER DIED | --> LEVEL 3 ");
+                        SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                        SDL_RenderClear( gRenderer );
+                        //Render current frame
+                        gText_L3.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+                        SDL_RenderPresent( gRenderer );
+                        SDL_Delay(2000);
                         break;
                         
                     }
@@ -1325,6 +1425,12 @@ int main( int argc, char* args[] )
                     {
                         printf(" |YAR DIED |");
                         yar1.mPosY=SCREEN_HEIGHT+10;
+                        SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                        SDL_RenderClear( gRenderer );
+                        //Render current frame
+                        gTextTexture.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+                        SDL_RenderPresent( gRenderer );
+                        SDL_Delay(2000);
                         exit(3);
                     }
                     
@@ -1426,6 +1532,12 @@ int main( int argc, char* args[] )
                             yar1.mPosX-= SCREEN_HEIGHT+10;
                             yar1.isActive=false;
                             printf(" | YAR DIED  | LEVEL 3 ");
+                            SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                            SDL_RenderClear( gRenderer );
+                            //Render current frame
+                            gTextTexture.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+                            SDL_RenderPresent( gRenderer );
+                            SDL_Delay(2000);
                             exit(3);
                             
                         }
@@ -1486,6 +1598,12 @@ int main( int argc, char* args[] )
                         monster.mPosY=SCREEN_HEIGHT+10;
                         monster.isActive=false;
                         printf(" |MONSTER DIED | --> LEVEL 4 ");
+                        SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                        SDL_RenderClear( gRenderer );
+                        //Render current frame
+                        gText_L4.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+                        SDL_RenderPresent( gRenderer );
+                        SDL_Delay(2000);
                         break;
                         
                     }
@@ -1696,6 +1814,12 @@ int main( int argc, char* args[] )
                     {
                         printf(" |YAR DIED | LEVEL 4 ");
                         yar1.mPosY=SCREEN_HEIGHT+10;
+                        SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                        SDL_RenderClear( gRenderer );
+                        //Render current frame
+                        gTextTexture.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+                        SDL_RenderPresent( gRenderer );
+                        SDL_Delay(2000);
                         exit(4);
                     }
                     
@@ -1797,6 +1921,12 @@ int main( int argc, char* args[] )
                             yar1.mPosX-= SCREEN_HEIGHT+10;
                             yar1.isActive=false;
                             printf(" |YAR DIED | LEVEL 4 ");
+                            SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                            SDL_RenderClear( gRenderer );
+                            //Render current frame
+                            gTextTexture.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+                            SDL_RenderPresent( gRenderer );
+                            SDL_Delay(2000);
                             exit(4);
                             
                         }
@@ -1857,6 +1987,12 @@ int main( int argc, char* args[] )
                         monster.mPosY=SCREEN_HEIGHT+10;
                         monster.isActive=false;
                         printf(" | MONSTER DIED | ---> YOU WON ! ");
+                        SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                        SDL_RenderClear( gRenderer );
+                        //Render current frame
+                        gText_Win.render( ( SCREEN_WIDTH - gTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gTextTexture.getHeight() ) / 2 );
+                        SDL_RenderPresent( gRenderer );
+                        SDL_Delay(2000);
                         break;
                         
                     }
@@ -1895,8 +2031,12 @@ int main( int argc, char* args[] )
     cannon.close();
     monster.close();
     egg1.close();
+    TTF_Quit();
+    IMG_Quit();
 
     close();
     
     return 0;
         }}}
+
+////////////////////////////////////////////////////////////
