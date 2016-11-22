@@ -21,7 +21,7 @@
 		7E33B1DD1DD8E66700927736 /* Megg.png in Sources */ = {isa = PBXBuildFile; fileRef = 7E33B1DB1DD8D50900927736 /* Megg.png */; };
 		7E4D96D71DD9A29400523CAD /* Yar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4D96D51DD9A29400523CAD /* Yar.cpp */; };
 		7E4D96DB1DD9C20500523CAD /* Egg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E4D96D81DD9A2B800523CAD /* Egg.cpp */; };
-		7ECC81AE1DDF126300A80746 /* Bullet.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECC81A71DDF111100A80746 /* Bullet.png */; };
+		7ECC81AE1DDF126300A80746 /* aBullet.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECC81A71DDF111100A80746 /* aBullet.png */; };
 		7ECC81AF1DDF126300A80746 /* cannon.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECC81A81DDF111100A80746 /* cannon.png */; };
 		7ECC81B01DDF126300A80746 /* Egg.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECC81A91DDF111100A80746 /* Egg.png */; };
 		7ECC81B11DDF126300A80746 /* Energy.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECC81AA1DDF111100A80746 /* Energy.png */; };
@@ -36,7 +36,7 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				7ECC81AE1DDF126300A80746 /* Bullet.png in CopyFiles */,
+				7ECC81AE1DDF126300A80746 /* aBullet.png in CopyFiles */,
 				7ECC81AF1DDF126300A80746 /* cannon.png in CopyFiles */,
 				7ECC81B01DDF126300A80746 /* Egg.png in CopyFiles */,
 				7ECC81B11DDF126300A80746 /* Energy.png in CopyFiles */,
@@ -74,7 +74,7 @@
 		7E4D96D81DD9A2B800523CAD /* Egg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Egg.cpp; sourceTree = SOURCE_ROOT; };
 		7E4D96D91DD9A2B800523CAD /* Egg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Egg.hpp; sourceTree = SOURCE_ROOT; };
 		7E7C0B001DD35E9A00B92685 /* revenge */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = revenge; sourceTree = BUILT_PRODUCTS_DIR; };
-		7ECC81A71DDF111100A80746 /* Bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bullet.png; sourceTree = "<group>"; };
+		7ECC81A71DDF111100A80746 /* aBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aBullet.png; sourceTree = "<group>"; };
 		7ECC81A81DDF111100A80746 /* cannon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cannon.png; sourceTree = "<group>"; };
 		7ECC81A91DDF111100A80746 /* Egg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Egg.png; sourceTree = "<group>"; };
 		7ECC81AA1DDF111100A80746 /* Energy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Energy.png; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 				7E33B1D61DD8CEDE00927736 /* LTexture.hpp */,
 				6402088D1DDDA97600BCA553 /* EnemeyBullet.cpp */,
 				6402088E1DDDA97600BCA553 /* EnemeyBullet.hpp */,
-				7ECC81A71DDF111100A80746 /* Bullet.png */,
+				7ECC81A71DDF111100A80746 /* aBullet.png */,
 				7ECC81A81DDF111100A80746 /* cannon.png */,
 				7E33B1DB1DD8D50900927736 /* Megg.png */,
 				7ECC81A91DDF111100A80746 /* Egg.png */,

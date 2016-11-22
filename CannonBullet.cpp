@@ -90,7 +90,7 @@ bool CannonBullet::loadMedia()
     bool success = true;
     
     //Load press texture
-    if( !gCannonBulletTexture.loadFromFile( "Bullet.png" ) )
+    if( !gCannonBulletTexture.loadFromFile( "Bulletc.png" ) )
     {
         printf( "Failed to load CannonBullet texture!\n" );
         success = false;

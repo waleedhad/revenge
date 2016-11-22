@@ -76,7 +76,7 @@ bool EnemeyBullet::loadMedia()
     bool success = true;
     
     //Load press texture
-    if( !gEnemeyBulletTexture.loadFromFile( "Bullet.png" ) )
+    if( !gEnemeyBulletTexture.loadFromFile( "Bulletm.png" ) )
     {
         printf( "Failed to load EnemeyBullet texture!\n" );
         success = false;

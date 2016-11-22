@@ -26,6 +26,8 @@
 #include "Bmonster.hpp"
 #include "CannonBullet.hpp"
 #include "LTexture.hpp"
+#include <string>
+
 
 //const int MAX_BULLETS = 1;
 
@@ -185,9 +187,35 @@ bool loadMedia_Text(){
     
 }
 
-
-
 #endif
+
+///////////////////////////
+
+// Background picture
+
+LTexture gWaterfallTexture[16];
+
+bool loadMedia_Waterfall()
+{
+    //Loading success flag
+    bool success = true;
+    
+    //Load press texture
+    for (int i=1; i<=16 ; i++){
+        
+        std::string file = std::to_string(i) + ".tiff";
+        
+        if( !gWaterfallTexture[i].loadFromFile( file.c_str() ) )
+        {
+            printf( "Failed to load Background texture!\n" );
+            success = false;
+        }
+    }
+ return success;
+}
+
+
+/////////////////////
 
 
 void LTexture::free()
@@ -366,6 +394,7 @@ void close()
     gRenderer = NULL;
     
     //Quit SDL subsystems
+    TTF_Quit();
     IMG_Quit();
     SDL_Quit();
 }
@@ -378,7 +407,7 @@ int main( int argc, char* args[] )
     
     
     // count no of collected energy;
-    int count=15;
+    int count=0;
     //time to randomlly move
    srand( static_cast<unsigned int>(time(NULL)));
     
@@ -425,7 +454,6 @@ int main( int argc, char* args[] )
     }
     
     
-    
     //Start up SDL and create window
     if( !init() )
     {
@@ -434,7 +462,7 @@ int main( int argc, char* args[] )
     else
     {
         //Load media
-        if( !yar1.loadMedia() || !egg1.loadMedia() || !bullet1.loadMedia() || !energy1.loadMedia() || !cannon.loadMedia() || !monster.loadMedia() || !enemyBullet.loadMedia() || !bmonster1.loadMedia() || !cannonBullet.loadMedia() || !loadMedia_Text())
+        if( !loadMedia_Waterfall() || !yar1.loadMedia() || !egg1.loadMedia() || !bullet1.loadMedia() || !energy1.loadMedia() || !cannon.loadMedia() || !monster.loadMedia() || !enemyBullet.loadMedia() || !bmonster1.loadMedia() || !cannonBullet.loadMedia() || !loadMedia_Text() )
         {
             printf( "Failed to load media!\n" );
         }
@@ -453,9 +481,9 @@ int main( int argc, char* args[] )
             
             //Set the water fall
             SDL_Rect wall;
-            wall.x = 200;
+            wall.x = 300;
             wall.y = 1;
-            wall.w = 100;
+            wall.w = 330;
             wall.h = SCREEN_HEIGHT-1;
             
             //Set the Egges
@@ -494,10 +522,34 @@ int main( int argc, char* args[] )
                                                         //LEVEL 1 \\
             /////////////////////////////////////////////////////////////////////////////////////////////////////
             
+           
+            //moving screen counters
+            int time_frame=0;
+            int i=1;
+
             
             //While application is running
             while( !quit )
             {
+                
+                
+                //Clear screen
+               // SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+               // SDL_RenderClear( gRenderer );
+                //Render water fall
+                //SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
+                
+                time_frame+=1;
+
+                
+                if(time_frame%7 == 0 && i<=16  ) i++;
+                
+                printf("%d \n",time_frame);
+                
+                gWaterfallTexture[i].render(0,0);
+                
+                if(i==16)i=1;
+                
                 
                 // get start time
                 
@@ -532,14 +584,11 @@ int main( int argc, char* args[] )
                 //Set the cannon
                 
                 
+
+                    
                 
-                //Clear screen
-                SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-                SDL_RenderClear( gRenderer );
-                
-                //Render water fall
-                SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
-                SDL_RenderDrawRect( gRenderer, &wall );
+            
+                //SDL_RenderDrawRect( gRenderer, &wall );
                 
                 //Render objects
                
@@ -847,7 +896,6 @@ int main( int argc, char* args[] )
                 }
                 
                 
-                
                 //Update screen
                 SDL_RenderPresent( gRenderer );
             }// main game loop
@@ -926,13 +974,25 @@ int main( int argc, char* args[] )
                 
                 
                 
-                //Clear screen
-                SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-                SDL_RenderClear( gRenderer );
+//                //Clear screen
+//                SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+//                SDL_RenderClear( gRenderer );
+//                
+//                //Render water fall
+//                SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
+//                SDL_RenderDrawRect( gRenderer, &wall );
                 
-                //Render water fall
-                SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
-                SDL_RenderDrawRect( gRenderer, &wall );
+                time_frame+=1;
+                
+                
+                if(time_frame%7 == 0 && i<=16  ) i++;
+                
+                printf("%d \n",time_frame);
+                
+                gWaterfallTexture[i].render(0,0);
+                
+                if(i==16)i=1;
+
                 
                 //Render objects
                 
@@ -1316,13 +1376,25 @@ int main( int argc, char* args[] )
                 
                 
                 
-                //Clear screen
+                /*/Clear screen
                 SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
                 SDL_RenderClear( gRenderer );
                 
                 //Render water fall
                 SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
-                SDL_RenderDrawRect( gRenderer, &wall );
+                //SDL_RenderDrawRect( gRenderer, &wall );
+                 */
+                
+                time_frame+=1;
+                
+                
+                if(time_frame%7 == 0 && i<=16  ) i++;
+                
+                printf("%d \n",time_frame);
+                
+                gWaterfallTexture[i].render(0,0);
+                
+                if(i==16)i=1;
                 
                 //Render objects
                 
@@ -1703,13 +1775,26 @@ int main( int argc, char* args[] )
                 
                 
                 
-                //Clear screen
+                /*
+                 /Clear screen
                 SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
                 SDL_RenderClear( gRenderer );
                 
                 //Render water fall
                 SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
-                SDL_RenderDrawRect( gRenderer, &wall );
+                //SDL_RenderDrawRect( gRenderer, &wall );
+                 */
+                
+                time_frame+=1;
+                
+                
+                if(time_frame%7 == 0 && i<=16  ) i++;
+                
+                printf("%d \n",time_frame);
+                
+                gWaterfallTexture[i].render(0,0);
+                
+                if(i==16)i=1;
                 
                 //Render objects
                 
@@ -2031,8 +2116,6 @@ int main( int argc, char* args[] )
     cannon.close();
     monster.close();
     egg1.close();
-    TTF_Quit();
-    IMG_Quit();
 
     close();
     
